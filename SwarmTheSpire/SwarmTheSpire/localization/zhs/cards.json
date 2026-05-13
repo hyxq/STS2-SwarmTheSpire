@@ -81,6 +81,8 @@
   "SWARM_THE_SPIRE_CARD_NEURO_PLAY.title": "姐姐代打",
   "SWARM_THE_SPIRE_CARD_PIPES_EVIL.description": "击晕全体敌人并造成{Damage:diff()}点伤害。\n结束你的回合。\n下回合开始时你会被钢管的余音震晕。",
   "SWARM_THE_SPIRE_CARD_PIPES_EVIL.title": "钢管Evil",
+  "SWARM_THE_SPIRE_CARD_FIM_SUFFIX.description": "在你打出下一张牌时，触发一个大概有用的效果，并根据打出的牌强化此效果。",
+  "SWARM_THE_SPIRE_CARD_FIM_SUFFIX.title": "FIMSuffix",
   "SWARM_THE_SPIRE_CARD_EVIL_PLUSH.description": "耗能等同于场上所有敌人的/p层数之和。\n在你的回合结束时，如果这张牌在你的手牌中，给予全体敌人{MilesPower:diff()}层/p。\n被消耗时，给予全体敌人等同于耗能的/p。",
   "SWARM_THE_SPIRE_CARD_EVIL_PLUSH.title": "Evil Plush",
   "SWARM_THE_SPIRE_CARD_THE_QUEEN_OF_HARPOONS.description": "你的[gold]鱼叉[/gold]会在攻击后对所有敌人再攻击一次。",
