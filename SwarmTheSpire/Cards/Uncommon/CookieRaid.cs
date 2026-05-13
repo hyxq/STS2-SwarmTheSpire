@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace SwarmTheSpire.Cards
 {
     public sealed class CookieRaid()
-        : SwarmEvilPoolCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self, true)
+        : SwarmEvilPoolCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 

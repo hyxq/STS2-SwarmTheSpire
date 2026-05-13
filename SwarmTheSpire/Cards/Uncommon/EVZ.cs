@@ -11,7 +11,7 @@ namespace SwarmTheSpire.Cards
 {
     [RegisterOwnedCardTag("evz")]
     public sealed class EVZ()
-        : SwarmEvilPoolCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self, true)
+        : SwarmEvilPoolCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
     {
         private CardModel? _mockSelectedCard;
 
