@@ -11,7 +11,7 @@ namespace SwarmTheSpire.Cards
     public sealed class EvilBite()
         : SwarmEvilPoolCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy, true)
     {
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Sly];
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [

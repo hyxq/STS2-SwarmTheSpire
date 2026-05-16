@@ -25,7 +25,7 @@ public sealed class Harpoon()
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Retain];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DamageVar(1m, DamageProps.cardHpLoss)];
+        [new DamageVar(1m, ValueProp.Unblockable)];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [HoverTipFactory.Static(StaticHoverTip.Fatal)];

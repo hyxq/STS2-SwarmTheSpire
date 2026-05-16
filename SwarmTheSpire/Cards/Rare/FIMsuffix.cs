@@ -7,6 +7,7 @@ using STS2RitsuLib.CardTags;
 using STS2RitsuLib.Interop.AutoRegistration;
 using SwarmTheSpire.Powers;
 using SwarmTheSpire;
+using STS2RitsuLib.Audio;
 
 namespace SwarmTheSpire.Cards
 {
@@ -17,6 +18,7 @@ namespace SwarmTheSpire.Cards
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
+            Sts2SfxAlignedFmod.PlayOneShot(Const.Sfx.FIMSuffix);
             await PowerCmd.Apply<FimSuffixPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this);
         }
 

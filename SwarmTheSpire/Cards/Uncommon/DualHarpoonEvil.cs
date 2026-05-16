@@ -9,10 +9,8 @@ using SwarmTheSpire.Powers;
 
 namespace SwarmTheSpire.Cards
 {
-    [RegisterOwnedCardKeyword("harpoon")]
-    [RegisterOwnedCardTag("harpoon")]
     public sealed class DualHarpoonEvil()
-        : SwarmEvilPoolCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
+        : SwarmEvilPoolCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, true)
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords =>
             [CardKeyword.Retain, CardKeyword.Exhaust];

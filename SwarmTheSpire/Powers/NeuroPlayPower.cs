@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
+using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Random;
@@ -87,9 +88,9 @@ namespace SwarmTheSpire.Powers
 
                     var skills = playable.Where(c => c.Type == CardType.Skill).ToList();
                     var rng = Owner.Player.RunState.Rng.CombatCardSelection;
-                    var card = skills.Count > 0
-                        ? rng.NextItem(skills)
-                        : rng.NextItem(playable);
+                    var enemyIntentDamage = GetTotalEnemyIntentDamage(combatState);
+                    var useSkillPreferred = Owner.Block < enemyIntentDamage && skills.Count > 0;
+                    var card = rng.NextItem(useSkillPreferred ? skills : playable);
 
                     if (card is null)
                         break;
@@ -134,6 +135,28 @@ namespace SwarmTheSpire.Powers
                 TargetType.Self => Owner,
                 _ => null,
             };
+        }
+
+        private decimal GetTotalEnemyIntentDamage(ICombatState combatState)
+        {
+            var totalIntentDamage = 0m;
+            var playerCreatures = combatState.Allies;
+            foreach (var enemy in combatState.HittableEnemies)
+            {
+                var monster = enemy.Monster;
+                if (monster?.NextMove?.Intents == null)
+                    continue;
+
+                foreach (var intent in monster.NextMove.Intents)
+                {
+                    if (intent is AttackIntent attackIntent)
+                    {
+                        totalIntentDamage += attackIntent.GetTotalDamage(playerCreatures, enemy);
+                    }
+                }
+            }
+
+            return totalIntentDamage;
         }
     }
 }

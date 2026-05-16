@@ -72,7 +72,10 @@ namespace SwarmTheSpire
 
         public static class Sfx
         {
-            public const string MetalPipeFalling = "event:/sfx/metal-pipe-falling-sound-effect";
+            public const string MetalPipeFalling = "event:/Evil/sfx/Pipe";
+            public const string FIMSuffix = "event:/Evil/sfx/FIM_Suffix";
+            public const string Location = "event:/Evil/sfx/Location";
+            public const string Location2 = "event:/Evil/sfx/Location2";
         }
     }
 }
