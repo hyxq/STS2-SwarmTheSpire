@@ -13,15 +13,12 @@ namespace SwarmTheSpire.Cards
         : SwarmEvilPoolCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, true)
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords =>
-            [CardKeyword.Retain, CardKeyword.Exhaust];
-
-        protected override IEnumerable<string> RegisteredKeywordIds =>
-            [ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon")];
+            [CardKeyword.Retain];
 
         protected override IEnumerable<string> RegisteredCardTagIds => [SwarmCardTagIds.Evz];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-            [HoverTipFactory.FromKeyword(CardKeyword.Retain), HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
+            [HoverTipFactory.FromKeyword(CardKeyword.Retain)];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {

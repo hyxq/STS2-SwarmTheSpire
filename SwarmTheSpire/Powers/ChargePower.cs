@@ -25,12 +25,14 @@ public sealed class ChargePower : SwarmPowerTemplate
 
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)
-    {
-        if (Owner != dealer || cardSource is null)
-            return 0m;
+	{
+		if (base.Owner != dealer)
+			return 0m;
 
-        return cardSource.HasModCardTag(SwarmCardTagIds.Harpoon) ? Amount : 0m;
-    }
+        if (cardSource is null || !cardSource.HasModCardTag(SwarmCardTagIds.Harpoon))
+			return 0m;
+		return base.Amount;
+	}	
 
     public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power,
         decimal amount, Creature? applier, CardModel? cardSource)

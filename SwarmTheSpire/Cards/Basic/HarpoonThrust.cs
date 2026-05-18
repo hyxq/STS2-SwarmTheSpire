@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Keywords;
 using SwarmTheSpire;
 using SwarmTheSpire.Character;
 using SwarmTheSpire.Powers;
@@ -24,8 +25,6 @@ namespace SwarmTheSpire.Cards
             [ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon")];
 
         protected override IEnumerable<string> RegisteredCardTagIds => [SwarmCardTagIds.Harpoon];
-
-        public override TargetType TargetType => HasQueenPower ? TargetType.AllEnemies : TargetType.AnyEnemy;
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [

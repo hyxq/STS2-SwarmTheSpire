@@ -23,8 +23,6 @@ namespace SwarmTheSpire.Cards
 
         protected override bool ShouldGlowGoldInternal => WasLastCardPlayedHarpoon;
 
-        public override TargetType TargetType => HasQueenPower ? TargetType.AllEnemies : TargetType.AnyEnemy;
-
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(9m, ValueProp.Move)];
 

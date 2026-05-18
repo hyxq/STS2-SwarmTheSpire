@@ -21,8 +21,6 @@ namespace SwarmTheSpire.Cards
 
         protected override IEnumerable<string> RegisteredCardTagIds => [SwarmCardTagIds.Harpoon];
 
-        public override TargetType TargetType => HasQueenPower ? TargetType.AllEnemies : TargetType.AnyEnemy;
-
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new CalculationBaseVar(21m),

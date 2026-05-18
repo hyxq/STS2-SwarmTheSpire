@@ -9,7 +9,7 @@ using SwarmTheSpire.Powers;
 namespace SwarmTheSpire.Cards
 {
     public sealed class CallingNeuro()
-        : SwarmEvilPoolCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy, true)
+        : SwarmEvilPoolCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy, true)
     {
         public override bool GainsBlock => true;
 

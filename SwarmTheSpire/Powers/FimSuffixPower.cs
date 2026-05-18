@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Combat;
@@ -210,6 +211,31 @@ namespace SwarmTheSpire.Powers
             return combatState.HittableEnemies.Any(e => e.Monster?.IntendsToAttack == true);
         }
 
+        private enum FallbackAction
+        {
+            Catch,
+            Block,
+            AoE,
+            SingleStrike,
+        }
+
+        private Creature? GetLowHpEnemy(ICombatState combatState, CardModel card)
+        {
+            var ownerPlayer = Owner.Player;
+            if (ownerPlayer is null)
+                return null;
+
+            var candidates = combatState.HittableEnemies
+                .Where(e => e.CurrentHp < 5m)
+                .ToList();
+
+            if (!candidates.Any())
+                return null;
+
+            var rng = ownerPlayer.RunState.Rng.CombatTargets;
+            return rng.NextItem(candidates);
+        }
+
         private async Task TriggerFallbackEffect(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
             Flash();
@@ -218,12 +244,12 @@ namespace SwarmTheSpire.Powers
             if (combatState is null)
                 return;
 
-            var hittableEnemies = combatState.HittableEnemies;
+            var hittableEnemies = combatState.HittableEnemies.ToList();
             if (!hittableEnemies.Any())
                 return;
 
             var lowHpEnemy = cardPlay.Card.Type == CardType.Attack
-                ? hittableEnemies.FirstOrDefault(e => e.CurrentHp < 5m)
+                ? GetLowHpEnemy(combatState, cardPlay.Card)
                 : null;
 
             if (lowHpEnemy is not null)
@@ -234,49 +260,68 @@ namespace SwarmTheSpire.Powers
                     MilesRelic.TryIncrementCatch(ownerPlayer);
                 await Task.Delay(1000);
                 TalkCmd.Play(
-                new LocString("powers", "SWARM_THE_SPIRE_POWER_FIM_SUFFIX_POWER.catch"),
-                Owner,
-                VfxColor.Red,
-                VfxDuration.Short);
+                    new LocString("powers", "SWARM_THE_SPIRE_POWER_FIM_SUFFIX_POWER.catch"),
+                    Owner,
+                    VfxColor.Red,
+                    VfxDuration.Short);
                 return;
             }
 
             var totalEnemyDamage = GetTotalEnemyIntentDamage(combatState);
+            var player = Owner.Player;
+            var actions = new List<FallbackAction>();
+
             if (Owner.Block < totalEnemyDamage)
             {
-                await CreatureCmd.GainBlock(Owner, 8m, ValueProp.Unpowered, null);
-                await Task.Delay(1000);
-                TalkCmd.Play(
-                new LocString("powers", "SWARM_THE_SPIRE_POWER_FIM_SUFFIX_POWER.block"),
-                Owner,
-                VfxColor.Red,
-                VfxDuration.Short);
-                return;
+                actions.Add(FallbackAction.Block);
+                actions.Add(hittableEnemies.Count > 1 ? FallbackAction.AoE : FallbackAction.SingleStrike);
+            }
+            else
+            {
+                actions.Add(hittableEnemies.Count > 1 ? FallbackAction.AoE : FallbackAction.SingleStrike);
             }
 
-            if (hittableEnemies.Count() == 1)
-            {
-                await CreatureCmd.Damage(choiceContext, hittableEnemies.First(), 10m, ValueProp.Unblockable, Owner, cardPlay.Card);
-                await Task.Delay(1000);
-                TalkCmd.Play(
-                new LocString("powers", "SWARM_THE_SPIRE_POWER_FIM_SUFFIX_POWER.single_strike"),
-                Owner,
-                VfxColor.Red,
-                VfxDuration.Short);
+            if (!actions.Any())
                 return;
-            }
 
-            foreach (var enemy in hittableEnemies)
+            var rng = player?.RunState.Rng.CombatTargets;
+            var chosenAction = rng is not null ? rng.NextItem(actions) : actions.First();
+
+            switch (chosenAction)
             {
-                await CreatureCmd.Damage(choiceContext, enemy, 7m, ValueProp.Unblockable, Owner, cardPlay.Card);
+                case FallbackAction.Block:
+                    await CreatureCmd.GainBlock(Owner, 8m, ValueProp.Unpowered, null);
+                    await Task.Delay(1000);
+                    TalkCmd.Play(
+                        new LocString("powers", "SWARM_THE_SPIRE_POWER_FIM_SUFFIX_POWER.block"),
+                        Owner,
+                        VfxColor.Red,
+                        VfxDuration.Short);
+                    break;
+
+                case FallbackAction.AoE:
+                    foreach (var enemy in hittableEnemies)
+                    {
+                        await CreatureCmd.Damage(choiceContext, enemy, 7m, ValueProp.Unblockable, Owner, cardPlay.Card);
+                    }
+                    await Task.Delay(1000);
+                    TalkCmd.Play(
+                        new LocString("powers", "SWARM_THE_SPIRE_POWER_FIM_SUFFIX_POWER.multi_strike"),
+                        Owner,
+                        VfxColor.Red,
+                        VfxDuration.Short);
+                    break;
+
+                case FallbackAction.SingleStrike:
+                    await CreatureCmd.Damage(choiceContext, hittableEnemies.First(), 10m, ValueProp.Unblockable, Owner, cardPlay.Card);
+                    await Task.Delay(1000);
+                    TalkCmd.Play(
+                        new LocString("powers", "SWARM_THE_SPIRE_POWER_FIM_SUFFIX_POWER.single_strike"),
+                        Owner,
+                        VfxColor.Red,
+                        VfxDuration.Short);
+                    break;
             }
-            await Task.Delay(1000);
-            TalkCmd.Play(
-                new LocString("powers", "SWARM_THE_SPIRE_POWER_FIM_SUFFIX_POWER.multi_strike"),
-                Owner,
-                VfxColor.Red,
-                VfxDuration.Short);
-            return;
         }
 
         private decimal GetTotalEnemyIntentDamage(ICombatState combatState)
