@@ -15,10 +15,15 @@ namespace SwarmTheSpire.Cards
         public override IEnumerable<CardKeyword> CanonicalKeywords =>
             [CardKeyword.Retain];
 
+        protected override IEnumerable<string> RegisteredKeywordIds =>
+        [
+            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon"),
+        ];
+
         protected override IEnumerable<string> RegisteredCardTagIds => [SwarmCardTagIds.Evz];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-            [HoverTipFactory.FromKeyword(CardKeyword.Retain)];
+            [HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {

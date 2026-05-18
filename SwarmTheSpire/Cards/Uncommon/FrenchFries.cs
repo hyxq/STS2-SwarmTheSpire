@@ -2,6 +2,7 @@ using System.Runtime.InteropServices;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -17,6 +18,9 @@ namespace SwarmTheSpire.Cards
             new DamageVar(28m, ValueProp.Move),
             new PowerVar<WeakPower>(2m),
         };
+
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+            [HoverTipFactory.FromPower<WeakPower>()];
 
         public override List<CardKeyword> CanonicalKeywords
         {

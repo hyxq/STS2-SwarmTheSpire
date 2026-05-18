@@ -1,0 +1,140 @@
+[
+  {
+    "summary": "--- title: en: RitsuLib zh-CN: RitsuLib",
+    "path": "docs\\pages\\index.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\index.md"
+  },
+  {
+    "summary": "--- title: en: Asset Profiles And Fallbacks zh-CN: 资源配置与回退 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\asset-profiles-and-fallbacks.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\asset-profiles-and-fallbacks.md"
+  },
+  {
+    "summary": "--- title: en: Card Dynamic Variables zh-CN: 卡牌动态变量 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\card-dynamic-var-toolkit.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\card-dynamic-var-toolkit.md"
+  },
+  {
+    "summary": "--- title: en: Character And Unlock Scaffolding zh-CN: 角色与解锁脚手架 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\character-and-unlock-scaffolding.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\character-and-unlock-scaffolding.md"
+  },
+  {
+    "summary": "--- title: en: Content Authoring zh-CN: 内容编写 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\content-authoring-toolkit.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\content-authoring-toolkit.md"
+  },
+  {
+    "summary": "--- title: en: Content Packs And Registries zh-CN: 内容包与注册器 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\content-packs-and-registries.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\content-packs-and-registries.md"
+  },
+  {
+    "summary": "--- title: en: Creature Visuals And Animation zh-CN: 生物视觉与动画 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\creature-visuals-and-animation.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\creature-visuals-and-animation.md"
+  },
+  {
+    "summary": "--- title: en: Custom Events zh-CN: 自定义事件 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\custom-events.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\custom-events.md"
+  },
+  {
+    "summary": "--- title: en: Diagnostics And Compatibility zh-CN: 诊断与兼容 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\diagnostics-and-compatibility.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\diagnostics-and-compatibility.md"
+  },
+  {
+    "summary": "--- title: en: FMOD And Audio zh-CN: FMOD 与音频 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\fmod-and-audio.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\fmod-and-audio.md"
+  },
+  {
+    "summary": "--- title: en: How RitsuLib Is Organized zh-CN: 框架组织方式 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\framework-design.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\framework-design.md"
+  },
+  {
+    "summary": "--- title: en: Getting Started zh-CN: 快速入门 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\getting-started.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\getting-started.md"
+  },
+  {
+    "summary": "--- title: en: Godot Scene Authoring zh-CN: Godot 场景编写 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\godot-scene-authoring.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\godot-scene-authoring.md"
+  },
+  {
+    "summary": "--- title: en: Documentation zh-CN: 文档 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\index.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\index.md"
+  },
+  {
+    "summary": "--- title: en: Lifecycle Events zh-CN: 生命周期事件 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\lifecycle-events.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\lifecycle-events.md"
+  },
+  {
+    "summary": "--- title: en: LocString Placeholders zh-CN: LocString 占位符 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\loc-string-placeholder-resolution.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\loc-string-placeholder-resolution.md"
+  },
+  {
+    "summary": "--- title: en: Localization And Keywords zh-CN: 本地化与关键词 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\localization-and-keywords.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\localization-and-keywords.md"
+  },
+  {
+    "summary": "--- title: en: Mod Settings zh-CN: Mod 设置 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\mod-settings.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\mod-settings.md"
+  },
+  {
+    "summary": "--- title: en: Patching zh-CN: 补丁系统 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\patching-guide.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\patching-guide.md"
+  },
+  {
+    "summary": "--- title: en: Persistence zh-CN: 持久化 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\persistence-guide.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\persistence-guide.md"
+  },
+  {
+    "summary": "--- title: en: Runtime UI And Shell Theme zh-CN: 运行时 UI 与 Shell 主题 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\shell-theme.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\shell-theme.md"
+  },
+  {
+    "summary": "--- title: en: Terminology zh-CN: 术语 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\terminology.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\terminology.md"
+  },
+  {
+    "summary": "--- title: en: Timeline And Unlocks zh-CN: 时间线与解锁 cover: https://wrxinyue.s3.bitiful.net/slay-the-spire-2-wallpaper.webp ---",
+    "path": "docs\\pages\\guide\\timeline-and-unlocks.md",
+    "title": "",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\ritsulib\\docs\\pages\\guide\\timeline-and-unlocks.md"
+  }
+]

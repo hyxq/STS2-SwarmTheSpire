@@ -13,7 +13,8 @@ namespace SwarmTheSpire.Cards
         protected override IEnumerable<string> RegisteredCardTagIds => [SwarmCardTagIds.Evz];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-            [HoverTipFactory.FromPower<WeakPower>()];
+            [HoverTipFactory.FromPower<WeakPower>(),
+             HoverTipFactory.Static(StaticHoverTip.Block)];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {

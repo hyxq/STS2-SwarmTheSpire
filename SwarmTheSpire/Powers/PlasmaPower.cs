@@ -10,16 +10,18 @@ namespace SwarmTheSpire.Powers
     public sealed class PlasmaPower : SwarmPowerTemplate
     {
         public override string CustomPackedIconPath =>
-            "res://SwarmTheSpire/images/powers/SwarmTheSpire-miles_power.png";
+            "res://SwarmTheSpire/images/powers/Icon_Plasmaball.png";
 
-        public override string CustomBigIconPath => "res://SwarmTheSpire/images/powers/SwarmTheSpire-miles_power.png";
+        public override string CustomBigIconPath => "res://SwarmTheSpire/images/powers/Icon_Plasmaball.png";
 
         public override PowerType Type => PowerType.Buff;
 
         public override PowerStackType StackType => PowerStackType.Counter;
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-            [HoverTipFactory.FromPower<WeakPower>()];
+            [HoverTipFactory.FromPower<WeakPower>(),
+            HoverTipFactory.Static(StaticHoverTip.Block)]
+            ;
 
         public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
             Creature? dealer, CardModel? cardSource)

@@ -22,6 +22,11 @@ public sealed class ChargePower : SwarmPowerTemplate
 
     public override bool AllowNegative => true;
 
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [
+            HoverTipFactory.FromCard<Harpoon>(),
+        ];
+
 
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)
@@ -33,6 +38,11 @@ public sealed class ChargePower : SwarmPowerTemplate
 			return 0m;
 		return base.Amount;
 	}	
+
+    protected override IEnumerable<string> RegisteredKeywordIds =>
+        [
+            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon"),
+        ];
 
     public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power,
         decimal amount, Creature? applier, CardModel? cardSource)

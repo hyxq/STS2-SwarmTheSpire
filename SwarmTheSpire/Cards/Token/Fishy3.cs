@@ -1,6 +1,7 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using SwarmTheSpire.Powers;
@@ -17,6 +18,9 @@ namespace SwarmTheSpire.Cards
             new PowerVar<ChargePower>(15m),
             new DynamicVar("Gold", -50m),
         ];
+
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+            [HoverTipFactory.FromPower<ChargePower>()];
 
         public async Task OnChosen()
         {

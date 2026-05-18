@@ -10,6 +10,7 @@ namespace SwarmTheSpire.Cards
     public sealed class MilesDevotion()
         : SwarmEvilPoolCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, true)
     {
+        public override bool GainsBlock => true;
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(7m, ValueProp.Move)];
 

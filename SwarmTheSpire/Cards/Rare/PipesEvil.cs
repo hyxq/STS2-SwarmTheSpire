@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Audio;
 using SwarmTheSpire;
 using SwarmTheSpire.Powers;
 
@@ -25,6 +26,7 @@ namespace SwarmTheSpire.Cards
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
+            Sts2SfxAlignedFmod.PlayOneShot(Const.Sfx.MetalPipeFalling);
             var combatState = CombatState;
             ArgumentNullException.ThrowIfNull(combatState);
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(combatState)
@@ -33,8 +35,8 @@ namespace SwarmTheSpire.Cards
             foreach (var hittableEnemy in combatState.HittableEnemies)
             {
                 await CreatureCmd.Stun(hittableEnemy);
-                PlayerCmd.EndTurn(Owner, false);
             }
+            PlayerCmd.EndTurn(Owner, false);
         }
 
         protected override void OnUpgrade()

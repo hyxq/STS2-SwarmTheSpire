@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.CardTags;
@@ -17,7 +18,10 @@ namespace SwarmTheSpire.Cards
         : SwarmEvilPoolCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, true)
     {
         protected override IEnumerable<string> RegisteredKeywordIds =>
-            [ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon")];
+        [
+            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon"),
+            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "catch"),
+        ];
 
         protected override IEnumerable<string> RegisteredCardTagIds => [SwarmCardTagIds.Harpoon];
 

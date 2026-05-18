@@ -1,0 +1,191 @@
+[
+  {
+    "summary": "`RitsuLib`是另一个统一添加新内容行为的基础mod。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\README.md",
+    "title": "RitsuLib",
+    "topic": "general",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\README.md"
+  },
+  {
+    "summary": "以下示例默认你已经在`Entry.Init()`中启用了`RitsuLib`的自动注册，否则`[RegisterCard]`之类的attribute不会生效（详见第0章）：",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\01 - 添加卡牌\\README.md",
+    "title": "添加卡牌",
+    "topic": "card",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\01 - 添加卡牌\\README.md"
+  },
+  {
+    "summary": "TODO",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\02 - 自定义配置\\README.md",
+    "title": "自定义配置",
+    "topic": "config",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\02 - 自定义配置\\README.md"
+  },
+  {
+    "summary": "以下示例默认已经在`Entry.Init()`中调用了`RitsuLibFramework.EnsureGodotScriptsRegistered(...)`和`ModTypeDiscoveryHub.RegisterModAssembly(...)`，否则自动注册不会生效。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\03 - 添加新遗物\\README.md",
+    "title": "添加新遗物",
+    "topic": "relic",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\03 - 添加新遗物\\README.md"
+  },
+  {
+    "summary": "这里的关键词指的是`消耗`，`虚无`一类的卡牌属性。`RitsuLib`没有`customenum`，但是统一管理。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\04 - 添加卡牌属性\\README.md",
+    "title": "添加卡牌属性",
+    "topic": "card",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\04 - 添加卡牌属性\\README.md"
+  },
+  {
+    "summary": "以下示例默认已经在`Entry.Init()`中调用了`RitsuLibFramework.EnsureGodotScriptsRegistered(...)`和`ModTypeDiscoveryHub.RegisterModAssembly(...)`，否则自动注册不会生效。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\05 - 添加新能力\\README.md",
+    "title": "添加新能力",
+    "topic": "power",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\05 - 添加新能力\\README.md"
+  },
+  {
+    "summary": "以下示例默认已经在`Entry.Init()`中调用了`RitsuLibFramework.EnsureGodotScriptsRegistered(...)`和`ModTypeDiscoveryHub.RegisterModAssembly(...)`，否则自动注册不会生效。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\06 - 添加新药水\\README.md",
+    "title": "添加新药水",
+    "topic": "potion",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\06 - 添加新药水\\README.md"
+  },
+  {
+    "summary": "首先创建类：",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\07 - 添加先古之民\\README.md",
+    "title": "添加先古之民",
+    "topic": "general",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\07 - 添加先古之民\\README.md"
+  },
+  {
+    "summary": "先创建类：",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\08 - 添加充能球\\README.md",
+    "title": "添加充能球",
+    "topic": "general",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\08 - 添加充能球\\README.md"
+  },
+  {
+    "summary": "时间线是2代用来兼顾解锁人物内容和故事讲述的功能。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\09 - 添加时间线\\README.md",
+    "title": "添加时间线",
+    "topic": "general",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\09 - 添加时间线\\README.md"
+  },
+  {
+    "summary": "https://github.com/BAKAOLC/STS2-RitsuLib/blob/main/Docs/zh/FmodAndAudio.md",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\10 - 添加音频\\README.md",
+    "title": "添加音频",
+    "topic": "general",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\10 - 添加音频\\README.md"
+  },
+  {
+    "summary": "首先找地方创建你的怪物类：",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\11 - 添加新怪物\\README.md",
+    "title": "添加新怪物",
+    "topic": "monster",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\11 - 添加新怪物\\README.md"
+  },
+  {
+    "summary": "首先创建类：",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\12 - 添加新事件\\README.md",
+    "title": "添加新事件",
+    "topic": "event",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\12 - 添加新事件\\README.md"
+  },
+  {
+    "summary": "首先创建附魔类：",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\13 - 添加新附魔\\README.md",
+    "title": "添加新附魔",
+    "topic": "general",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\13 - 添加新附魔\\README.md"
+  },
+  {
+    "summary": "添加新人物过于麻烦了，于是单开一章。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\14 - 添加新人物\\README.md",
+    "title": "添加新人物",
+    "topic": "character",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\14 - 添加新人物\\README.md"
+  },
+  {
+    "summary": "单例（`SingletonModel`）是一种独立于卡牌、遗物等的`AbstractModel`。所有的`AbstractModel`都有接收游戏事件发生的能力。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\15 - 添加单例\\README.md",
+    "title": "添加单例",
+    "topic": "general",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\15 - 添加单例\\README.md"
+  },
+  {
+    "summary": "你可以使用该功能制作类似`中毒` `灾厄`的血条覆盖层。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\16 - 血条覆盖\\README.md",
+    "title": "血条覆盖",
+    "topic": "general",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\16 - 血条覆盖\\README.md"
+  },
+  {
+    "summary": "如果你想给卡牌、遗物等对象添加一个会随存档保存的状态，可以使用`SavedAttachedState<TOwner, TValue>`。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\17 - 数据保存\\README.md",
+    "title": "数据保存",
+    "topic": "general",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\17 - 数据保存\\README.md"
+  },
+  {
+    "summary": "基础库提供了一个修改手牌上限的接口，只要接上`IMaxHandSizeModifier`并实现就行。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\18 - 手牌上限\\README.md",
+    "title": "手牌上限",
+    "topic": "general",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\18 - 手牌上限\\README.md"
+  },
+  {
+    "summary": "如果你只想发黄光和红光，直接在你的卡牌类里重写以下属性即可：",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\19 - 手牌泛光\\README.md",
+    "title": "手牌泛光",
+    "topic": "general",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\19 - 手牌泛光\\README.md"
+  },
+  {
+    "summary": "`RitsuLib`提供了一套生命周期事件系统，可以在游戏启动、跑局、战斗等各个阶段监听事件。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\20 - 生命周期事件\\README.md",
+    "title": "生命周期事件",
+    "topic": "event",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\20 - 生命周期事件\\README.md"
+  },
+  {
+    "summary": "`RitsuLib`在Harmony之上封装了一层补丁系统，统一了补丁声明、注册和失败处理。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\21 - 补丁系统\\README.md",
+    "title": "补丁系统",
+    "topic": "patch",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\21 - 补丁系统\\README.md"
+  },
+  {
+    "summary": "`RitsuLib`提供了一套结构化的数据持久化层，支持作用域存储、档位切换、备份回退以及数据迁移。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\22 - 数据持久化\\README.md",
+    "title": "数据持久化",
+    "topic": "general",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\22 - 数据持久化\\README.md"
+  },
+  {
+    "summary": "`RitsuLib`提供了一套自定义卡牌堆系统，内置UI集成和本地化支持。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\23 - 自定义卡牌堆\\README.md",
+    "title": "自定义卡牌堆",
+    "topic": "card",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\23 - 自定义卡牌堆\\README.md"
+  },
+  {
+    "summary": "`RitsuLib`提供了一套自定义顶栏按钮注册系统，支持图标、点击处理、可见性控制和计数徽章。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\24 - 顶栏按钮\\README.md",
+    "title": "顶栏按钮",
+    "topic": "general",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\24 - 顶栏按钮\\README.md"
+  },
+  {
+    "summary": "`RitsuLib`提供了一套通知提示服务，用于向玩家显示非侵入式消息。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\25 - 通知提示\\README.md",
+    "title": "通知提示",
+    "topic": "general",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\25 - 通知提示\\README.md"
+  },
+  {
+    "summary": "`RitsuLib`提供了一套运行时热键注册系统，支持多绑定、重绑定、修饰键和文本输入时自动抑制。",
+    "fullPath": "D:\\workspace\\STS2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\26 - 运行时热键\\README.md",
+    "title": "运行时热键",
+    "topic": "general",
+    "path": "2RitsuLibModSkill\\cache\\tutorials\\RitsuLib\\26 - 运行时热键\\README.md"
+  }
+]

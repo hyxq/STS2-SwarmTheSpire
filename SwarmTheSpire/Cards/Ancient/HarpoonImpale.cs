@@ -17,7 +17,10 @@ namespace SwarmTheSpire.Cards
         : SwarmEvilPoolCard(1, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy, true)
     {
         protected override IEnumerable<string> RegisteredKeywordIds =>
-            [ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon")];
+        [
+            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon"),
+            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "catch"),
+        ];
 
         protected override IEnumerable<string> RegisteredCardTagIds => [SwarmCardTagIds.Harpoon];
 

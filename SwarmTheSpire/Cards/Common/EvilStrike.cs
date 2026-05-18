@@ -18,7 +18,7 @@ namespace SwarmTheSpire.Cards
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(9m, ValueProp.Move),
+            new DamageVar(10m, ValueProp.Move),
             new PowerVar<MilesPower>(1m),
         ];
 
@@ -34,7 +34,7 @@ namespace SwarmTheSpire.Cards
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(1m);
+            DynamicVars.Damage.UpgradeValueBy(2m);
             DynamicVars["MilesPower"].UpgradeValueBy(1m);
         }
     }

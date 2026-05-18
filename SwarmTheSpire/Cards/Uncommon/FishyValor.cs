@@ -19,6 +19,9 @@ namespace SwarmTheSpire.Cards
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
             HoverTipFactory.FromPower<ChargePower>(),
+            HoverTipFactory.FromCard<Fishy1>(),
+            HoverTipFactory.FromCard<Fishy2>(),
+            HoverTipFactory.FromCard<Fishy3>(),
         ];
 
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain, CardKeyword.Exhaust];

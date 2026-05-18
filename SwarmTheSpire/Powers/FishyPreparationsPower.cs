@@ -24,6 +24,7 @@ namespace SwarmTheSpire.Powers
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
+            HoverTipFactory.FromPower<ChargePower>(),
             HoverTipFactory.Static(StaticHoverTip.Block),
         ];
 

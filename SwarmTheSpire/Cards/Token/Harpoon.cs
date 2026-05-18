@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Content;
+using STS2RitsuLib.Keywords;
 using SwarmTheSpire.Powers;
 using SwarmTheSpire;
 using SwarmTheSpire.Relics;
@@ -18,7 +19,10 @@ public sealed class Harpoon()
     : SwarmTokenPoolCard(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy, false)
 {
     protected override IEnumerable<string> RegisteredKeywordIds =>
-        [ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon")];
+    [
+            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon"),
+            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "catch"),
+    ];
 
     protected override IEnumerable<string> RegisteredCardTagIds => [SwarmCardTagIds.Harpoon];
 

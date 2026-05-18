@@ -1,6 +1,6 @@
 {
-    "SWARM_THE_SPIRE_KEYWORD_HARPOON.description": "[gold]斩杀[/gold]时，如果造成的伤害恰好杀死了敌人，根据敌人的类型获得渔获。",
+    "SWARM_THE_SPIRE_KEYWORD_HARPOON.description": "[gold]斩杀[/gold]时，如果造成的伤害恰好杀死了敌人，根据敌人的类型获得[gold]渔获[/gold]。",
     "SWARM_THE_SPIRE_KEYWORD_HARPOON.title": "鱼叉",
-    "SWARM_THE_SPIRE_KEYWORD_CATCH.description": "使用鱼叉牌恰好斩杀敌人时所获得的遗物。",
+    "SWARM_THE_SPIRE_KEYWORD_CATCH.description": "使用[gold]鱼叉[/gold]恰好斩杀敌人时所获得的遗物。",
     "SWARM_THE_SPIRE_KEYWORD_CATCH.title": "渔获"
 }

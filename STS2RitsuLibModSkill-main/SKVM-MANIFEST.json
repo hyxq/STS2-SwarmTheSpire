@@ -1,0 +1,265 @@
+{
+  "name": "STS2RitsuLibModSkill",
+  "version": "1.0.0",
+  "skvmVersion": "1.0.0",
+  "description": "Slay the Spire 2 + RitsuLib Mod 开发 Skill — SkVM 编译清单",
+  "capabilities": [
+    {
+      "id": "source-discovery",
+      "description": "自动发现游戏 DLL、RitsuLib 源码、教程仓库路径",
+      "script": "scripts/discover-roots.ps1",
+      "requires": {
+        "tools": ["pwsh"],
+        "env": []
+      },
+      "fallbacks": [
+        {
+          "condition": "no-pwsh",
+          "action": "prompt-manual-path",
+          "compensation": "请用户手动提供游戏 DLL、RitsuLib、教程的路径，写入 config.json"
+        },
+        {
+          "condition": "no-steam",
+          "action": "prompt-game-path",
+          "compensation": "请用户提供 Steam 安装路径或游戏 DLL 完整路径"
+        }
+      ],
+      "cachePolicy": "solidify-after-5",
+      "timeout": 30000
+    },
+    {
+      "id": "source-acquisition",
+      "description": "克隆 RitsuLib/教程仓库，反编译游戏 DLL",
+      "scripts": {
+        "ritsulib": "scripts/acquire-ritsulib.ps1",
+        "tutorials": "scripts/acquire-tutorials.ps1",
+        "decompile": "scripts/decompile-sts2.ps1"
+      },
+      "requires": {
+        "tools": ["pwsh", "git"],
+        "env": ["dotnet-sdk", "network"]
+      },
+      "fallbacks": [
+        {
+          "condition": "no-git",
+          "action": "prompt-install-git",
+          "compensation": "提示用户安装 Git: https://git-scm.com/"
+        },
+        {
+          "condition": "no-network",
+          "action": "use-offline-cache",
+          "compensation": "使用已有的缓存资源，跳过在线获取"
+        },
+        {
+          "condition": "no-ilspycmd",
+          "action": "auto-install-ilspycmd",
+          "compensation": "运行 dotnet tool install -g ilspycmd 自动安装"
+        },
+        {
+          "condition": "no-dotnet-sdk",
+          "action": "skip-decompile",
+          "compensation": "跳过反编译步骤，使用内置索引查询游戏内容"
+        }
+      ],
+      "cachePolicy": "never-solidify",
+      "timeout": 300000
+    },
+    {
+      "id": "index-building",
+      "description": "为游戏源码、RitsuLib 文档和 API 建立可查询索引",
+      "script": "scripts/build-index.ps1",
+      "requires": {
+        "tools": ["pwsh"]
+      },
+      "fallbacks": [
+        {
+          "condition": "no-pwsh",
+          "action": "use-builtin-indexes",
+          "compensation": "使用 indexes/ 目录下的内置索引，跳过动态构建"
+        },
+        {
+          "condition": "no-source-data",
+          "action": "use-builtin-indexes",
+          "compensation": "源码数据不可用时使用内置索引"
+        }
+      ],
+      "cachePolicy": "solidify-after-3",
+      "timeout": 120000
+    },
+    {
+      "id": "intelligent-query",
+      "description": "按内容名、类型、功能域、本地化键查找原版实现和 RitsuLib API",
+      "script": "scripts/query-index.ps1",
+      "requires": {
+        "tools": ["pwsh"],
+        "data": ["indexes"]
+      },
+      "fallbacks": [
+        {
+          "condition": "no-indexes",
+          "action": "build-index-first",
+          "compensation": "先运行 index-building 能力构建索引"
+        },
+        {
+          "condition": "no-pwsh",
+          "action": "direct-json-search",
+          "compensation": "直接读取 JSON 索引文件进行搜索（无模糊匹配）"
+        }
+      ],
+      "cachePolicy": "never-solidify",
+      "timeout": 10000
+    },
+    {
+      "id": "mod-scaffolding",
+      "description": "使用 NuGet 模板创建标准 RitsuLib Mod 项目",
+      "script": "scripts/create-mod.ps1",
+      "requires": {
+        "tools": ["pwsh", "dotnet-sdk"]
+      },
+      "fallbacks": [
+        {
+          "condition": "no-dotnet",
+          "action": "prompt-install-dotnet",
+          "compensation": "提示用户安装 .NET SDK: https://dotnet.microsoft.com/"
+        },
+        {
+          "condition": "no-pwsh",
+          "action": "manual-scaffold",
+          "compensation": "提供手动创建项目的步骤说明"
+        }
+      ],
+      "cachePolicy": "never-solidify",
+      "timeout": 60000
+    }
+  ],
+  "environment": {
+    "probes": [
+      {
+        "id": "pwsh",
+        "name": "PowerShell Core",
+        "command": "pwsh --version",
+        "type": "command",
+        "critical": true,
+        "versionRegex": "PowerShell (\\d+\\.\\d+)"
+      },
+      {
+        "id": "dotnet-sdk",
+        "name": ".NET SDK",
+        "command": "dotnet --version",
+        "type": "command",
+        "critical": false,
+        "versionRegex": "(\\d+\\.\\d+\\.\\d+)"
+      },
+      {
+        "id": "git",
+        "name": "Git",
+        "command": "git --version",
+        "type": "command",
+        "critical": false,
+        "versionRegex": "git version (\\d+\\.\\d+)"
+      },
+      {
+        "id": "ilspycmd",
+        "name": "ILSpy CLI",
+        "command": "ilspycmd --help",
+        "type": "command",
+        "critical": false,
+        "versionRegex": "(\\d+\\.\\d+)"
+      },
+      {
+        "id": "steam-install",
+        "name": "Steam 安装目录",
+        "type": "registry-or-path",
+        "critical": false,
+        "windowsRegistry": [
+          "HKLM:\\SOFTWARE\\WOW6432Node\\Valve\\Steam",
+          "HKLM:\\SOFTWARE\\Valve\\Steam"
+        ],
+        "defaultPaths": {
+          "windows": [
+            "${env:ProgramFiles(x86)}\\Steam",
+            "$env:ProgramFiles\\Steam",
+            "D:\\Steam",
+            "D:\\SteamLibrary"
+          ],
+          "macos": ["$env:HOME/Library/Application Support/Steam"],
+          "linux": [
+            "$env:HOME/.steam/steam",
+            "$env:HOME/.local/share/Steam"
+          ]
+        }
+      },
+      {
+        "id": "network",
+        "name": "网络连接",
+        "type": "connectivity",
+        "critical": false,
+        "testUrl": "https://github.com",
+        "timeout": 5000
+      }
+    ]
+  },
+  "workflow": {
+    "dag": {
+      "discover": {
+        "depends": [],
+        "parallel": false,
+        "capability": "source-discovery",
+        "description": "发现所有资源路径"
+      },
+      "acquire-ritsulib": {
+        "depends": ["discover"],
+        "parallel": true,
+        "capability": "source-acquisition",
+        "description": "获取 RitsuLib 源码"
+      },
+      "acquire-tutorials": {
+        "depends": ["discover"],
+        "parallel": true,
+        "capability": "source-acquisition",
+        "description": "获取教程仓库"
+      },
+      "decompile-game": {
+        "depends": ["discover"],
+        "parallel": true,
+        "capability": "source-acquisition",
+        "description": "反编译游戏 DLL"
+      },
+      "build-index": {
+        "depends": ["acquire-ritsulib", "acquire-tutorials", "decompile-game"],
+        "parallel": false,
+        "capability": "index-building",
+        "description": "构建查询索引"
+      },
+      "query": {
+        "depends": ["build-index"],
+        "parallel": false,
+        "capability": "intelligent-query",
+        "description": "查询索引"
+      },
+      "create-mod": {
+        "depends": [],
+        "parallel": false,
+        "capability": "mod-scaffolding",
+        "description": "创建 Mod 项目"
+      }
+    },
+    "entryPoints": {
+      "init": ["discover", "acquire-ritsulib", "acquire-tutorials", "decompile-game", "build-index"],
+      "query": ["query"],
+      "create": ["create-mod"],
+      "full": ["discover", "acquire-ritsulib", "acquire-tutorials", "decompile-game", "build-index", "query"]
+    }
+  },
+  "solidification": {
+    "stableThreshold": 5,
+    "volatileCapabilities": ["source-acquisition"],
+    "solidifiableCapabilities": ["source-discovery", "index-building"],
+    "cacheDir": "cache/skvm/solidified"
+  },
+  "recompilation": {
+    "failureThreshold": 3,
+    "cooldownMs": 60000,
+    "maxVariants": 10
+  }
+}

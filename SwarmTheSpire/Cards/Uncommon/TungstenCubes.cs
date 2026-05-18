@@ -11,11 +11,6 @@ namespace SwarmTheSpire.Cards
     {
         public override bool GainsBlock => true;
 
-        protected override HashSet<CardTag> CanonicalTags =>
-        [
-            CardTag.Defend,
-        ];
-
         protected override IEnumerable<string> RegisteredCardTagIds => [SwarmCardTagIds.Evz];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>

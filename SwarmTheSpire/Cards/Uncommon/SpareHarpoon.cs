@@ -22,7 +22,9 @@ namespace SwarmTheSpire.Cards
             [CardKeyword.Exhaust, CardKeyword.Retain];
 
         protected override IEnumerable<string> RegisteredKeywordIds =>
-            [ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon")];
+        [
+            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon"),
+        ];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.Static(StaticHoverTip.Fatal)];
