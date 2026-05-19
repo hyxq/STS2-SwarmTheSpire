@@ -22,7 +22,7 @@ namespace SwarmTheSpire.Cards
                 await CardCmd.Exhaust(choiceContext, val2);
             }
 
-            await PlayerCmd.GainGold(cost, Owner);
+            await PlayerCmd.GainGold(cost*3, Owner);
         }
 
         protected override void OnUpgrade()

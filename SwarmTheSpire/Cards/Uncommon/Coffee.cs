@@ -13,8 +13,8 @@ namespace SwarmTheSpire.Cards
 
         protected override IEnumerable<DynamicVar> CanonicalVars => new List<DynamicVar>
         {
-            new EnergyVar(1),
-            new CardsVar(3),
+            new EnergyVar(2),
+            new CardsVar(2),
         };
 
         protected override Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

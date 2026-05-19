@@ -13,7 +13,8 @@ namespace SwarmTheSpire.Cards
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new PowerVar<MilesPower>(3m),
-        new BlockVar(10m, ValueProp.Move)];
+        new PowerVar<VulnerablePower>(2m),
+        new BlockVar(13m, ValueProp.Move)];
 
         public override bool GainsBlock => true;
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
@@ -30,13 +31,14 @@ namespace SwarmTheSpire.Cards
             foreach (var item in hittableEnemies)
             await PowerCmd.Apply<MilesPower>(choiceContext, item, DynamicVars["MilesPower"].BaseValue,
             Owner.Creature, this);
-            await PowerCmd.Apply<VulnerablePower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this);
+            await PowerCmd.Apply<VulnerablePower>(choiceContext, Owner.Creature, DynamicVars["VulnerablePower"].BaseValue, Owner.Creature, this);
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         }
 
         protected override void OnUpgrade()
         {
-            DynamicVars["MilesPower"].UpgradeValueBy(1m);
+            DynamicVars.Block.UpgradeValueBy(2m);
+            DynamicVars["VulnerablePower"].UpgradeValueBy(-1m);
         }
     }
 }

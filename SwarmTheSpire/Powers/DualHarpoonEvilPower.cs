@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
+using STS2RitsuLib.CardTags;
 using STS2RitsuLib.Content;
 using STS2RitsuLib.Keywords;
 
@@ -31,9 +32,8 @@ namespace SwarmTheSpire.Powers
 
         public override Task BeforeCardPlayed(CardPlay cardPlay)
         {
-            if (_wasUsedThisTurn || _trackedCard is not null || cardPlay.Card.Owner != Owner.Player || !cardPlay.Card
-                    .GetModKeywordIds()
-                    .Contains(ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon")))
+            if (_wasUsedThisTurn || _trackedCard is not null || cardPlay.Card.Owner != Owner.Player || !cardPlay.Card.HasModCardTag(SwarmCardTagIds.Harpoon))
+
                 return Task.CompletedTask;
 
             _trackedCard = cardPlay.Card;

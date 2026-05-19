@@ -69,7 +69,7 @@ public sealed class ChargePower : SwarmPowerTemplate
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
-        if (Amount <= 0 || cardPlay.Card.Owner.Creature != Owner)
+        if (cardPlay.Card.Owner.Creature != Owner)
             return;
 
         if (!cardPlay.Card.HasModCardTag(SwarmCardTagIds.Harpoon))

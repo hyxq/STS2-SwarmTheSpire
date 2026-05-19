@@ -9,7 +9,7 @@ using SwarmTheSpire.Powers;
 
 namespace SwarmTheSpire.Cards
 {
-    [RegisterCharacterStarterCard(typeof(EvilCharacter))]
+    [RegisterCharacterStarterCard(typeof(EvilCharacter), 1, Order = 2)]
     public class EvilStream() : SwarmEvilPoolCard(1, CardType.Skill, CardRarity.Basic, TargetType.AnyEnemy, true)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>

@@ -16,7 +16,7 @@ using SwarmTheSpire.Relics;
 
 namespace SwarmTheSpire.Cards
 {
-    [RegisterCharacterStarterCard(typeof(EvilCharacter))]
+    [RegisterCharacterStarterCard(typeof(EvilCharacter), 1, Order = 3)]
     [RegisterArchaicToothTranscendence(typeof(HarpoonImpale))]
     public sealed class HarpoonThrust()
         : SwarmEvilPoolCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy, true)

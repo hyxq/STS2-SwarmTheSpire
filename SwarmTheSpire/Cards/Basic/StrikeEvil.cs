@@ -8,7 +8,7 @@ using SwarmTheSpire.Character;
 
 namespace SwarmTheSpire.Cards
 {
-    [RegisterCharacterStarterCard(typeof(EvilCharacter), 4)]
+    [RegisterCharacterStarterCard(typeof(EvilCharacter), 4, Order = 0)]
     public sealed class StrikeEvil()
         : SwarmEvilPoolCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy, true)
     {

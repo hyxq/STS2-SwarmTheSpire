@@ -8,7 +8,7 @@ using SwarmTheSpire.Character;
 
 namespace SwarmTheSpire.Cards
 {
-    [RegisterCharacterStarterCard(typeof(EvilCharacter), 4)]
+    [RegisterCharacterStarterCard(typeof(EvilCharacter), 4, Order = 1)]
     public sealed class DefendEvil() : SwarmEvilPoolCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self, true)
     {
         public override bool GainsBlock => true;

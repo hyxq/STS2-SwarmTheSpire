@@ -32,8 +32,18 @@ namespace SwarmTheSpire.Powers
 
         public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            if (Amount <= 0 || cardPlay.Card.Owner.Creature != Owner || cardPlay.Card.GetType().Name == "FimSuffix" || !cardPlay.IsFirstInSeries)
+            if (Amount <= 0 || cardPlay.Card.Owner.Creature != Owner || !cardPlay.IsFirstInSeries)
                 return;
+            
+            if (cardPlay.Card.GetType().Name == "FimSuffix")
+            {
+                TalkCmd.Play(
+                    new LocString("powers", "SWARM_THE_SPIRE_POWER_FIM_SUFFIX_POWER.suffix"),
+                    Owner,
+                    VfxColor.Red,
+                    VfxDuration.Short);
+                return;
+            }
 
             await PowerCmd.Decrement(this);
             await TriggerSuffixEffects(choiceContext, cardPlay);
@@ -97,7 +107,7 @@ namespace SwarmTheSpire.Powers
             if (cardPlay.Target is null)
                 return;
 
-            await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target, 1m, Owner, cardPlay.Card, false);
+            await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target, 2m, Owner, cardPlay.Card, false);
             TalkCmd.Play(
                 new LocString("powers", "SWARM_THE_SPIRE_POWER_FIM_SUFFIX_POWER.attack"),
                 Owner,

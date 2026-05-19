@@ -75,9 +75,15 @@ namespace SwarmTheSpire.Cards
             }
         }
 
-        protected override void OnUpgrade()
+        protected override PileType GetResultPileTypeForOnTurnEndInHandEffect()
         {
-            DynamicVars["MilesPower"].UpgradeValueBy(1m);
+            if (!IsUpgraded)
+                return base.GetResultPileTypeForOnTurnEndInHandEffect();
+
+            return PileType.Hand;
         }
+
+
+        protected override void OnUpgrade() => AddKeyword(CardKeyword.Retain);
     }
 }
