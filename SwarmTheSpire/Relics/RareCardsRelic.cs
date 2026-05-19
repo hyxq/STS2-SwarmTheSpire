@@ -4,6 +4,6 @@ namespace SwarmTheSpire.Relics
 {
     public class RareCardsRelic : SwarmRelicTemplate
     {
-        public override RelicRarity Rarity => RelicRarity.Common;
+        public override RelicRarity Rarity => RelicRarity.Event;
     }
 }

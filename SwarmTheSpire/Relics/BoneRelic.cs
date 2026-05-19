@@ -10,7 +10,7 @@ namespace SwarmTheSpire.Relics
 {
     public class BoneRelic : StackableCatchRelicTemplate
     {
-        public override RelicRarity Rarity => RelicRarity.Common;
+        public override RelicRarity Rarity => RelicRarity.Event;
 
         public override bool HasUponPickupEffect => true;
 
