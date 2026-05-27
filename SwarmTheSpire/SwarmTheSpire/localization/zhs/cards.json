@@ -34,7 +34,7 @@
   "SWARM_THE_SPIRE_CARD_PIRATE_EVIL.title": "海盗Evil",
   "SWARM_THE_SPIRE_CARD_EVZ.description": "从3张在EVZ中出现过的卡牌中选择1张加入手牌，这张牌在本回合耗能变为0。",
   "SWARM_THE_SPIRE_CARD_EVZ.title": "EVZ",
-  "SWARM_THE_SPIRE_CARD_TUNGSTEN_CUBES.description": "使你的余额{Gold:diff()}。\n获得{Block:diff()}点[gold]格挡[/gold]。",
+  "SWARM_THE_SPIRE_CARD_TUNGSTEN_CUBES.description": "消耗21[gold]金币[/gold]。\n击晕一名敌人。\n若剩余[gold]金币[/gold]为负数，[gold]消耗[/gold]。",
   "SWARM_THE_SPIRE_CARD_TUNGSTEN_CUBES.title": "钨立方体",
   "SWARM_THE_SPIRE_CARD_CALLING_NEURO.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n给予{NeuroFansPower:diff()}层[gold]+p[/gold]。",
   "SWARM_THE_SPIRE_CARD_CALLING_NEURO.title": "呼叫姐姐",
@@ -82,7 +82,7 @@
   "SWARM_THE_SPIRE_CARD_CREW_MEMBER_EVIL.title": "店员Evil" ,
   "SWARM_THE_SPIRE_CARD_NEURO_PLAY.approval": "[pink]还得靠我[/pink]",
   "SWARM_THE_SPIRE_CARD_NEURO_PLAY.warning": "[pink]有点累了[/pink]",
-  "SWARM_THE_SPIRE_CARD_NEURO_PLAY.description": "每回合开始时，获得1点能量。\n获得{Block:diff()}点[gold]格挡[/gold]。\n每打出一张牌，都获得2点[gold]格挡[/gold]。\n[pink]Neuro[/pink]将接管你的对局。\n结束你的回合。",
+  "SWARM_THE_SPIRE_CARD_NEURO_PLAY.description": "每回合开始时，获得1点能量。\n每打出一张牌，都获得2点[gold]格挡[/gold]。\n[pink]Neuro[/pink]将接管你的对局。\n结束你的回合。",
   "SWARM_THE_SPIRE_CARD_NEURO_PLAY.title": "姐姐代打",
   "SWARM_THE_SPIRE_CARD_PIPES_EVIL.description": "击晕全体敌人并造成{Damage:diff()}点伤害。\n结束你的回合。\n下回合开始时你会被钢管的余音震晕。",
   "SWARM_THE_SPIRE_CARD_PIPES_EVIL.title": "钢管Evil",
@@ -95,5 +95,7 @@
   "SWARM_THE_SPIRE_CARD_DIABOLIC_FORM.description": "获得6点力量。\n给予所有敌人6层[gold]易伤[/gold]、[gold]虚弱[/gold]和[gold]/p[/gold]。\n在你的回合结束时，失去6点生命并获得6点格挡。",
   "SWARM_THE_SPIRE_CARD_DIABOLIC_FORM.title": "邪神形态",
   "SWARM_THE_SPIRE_CARD_BOOM.description": "给予所有敌人{MilesPower:diff()}层[gold]/p[/gold]。\n造成等同于所有敌人[gold]/p[/gold]层数之和的伤害，获得等同于所造成伤害的[gold]金币[/gold]。",
-  "SWARM_THE_SPIRE_CARD_BOOM.title": "BOOM！"
+  "SWARM_THE_SPIRE_CARD_BOOM.title": "BOOM！",
+  "SWARM_THE_SPIRE_CARD_CEO_EVIL.description": "只能在金币不少于100时打出。\n当你获得或消耗金币时，获得等量[gold]格挡[/gold]。",
+  "SWARM_THE_SPIRE_CARD_CEO_EVIL.title": "CEO Evil"
 }
