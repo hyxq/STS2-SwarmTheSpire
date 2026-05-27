@@ -1,34 +1,43 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.CardTags;
 using SwarmTheSpire;
 
 namespace SwarmTheSpire.Cards
 {
-    public sealed class TungstenCubes() : SwarmEvilPoolCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
+    public sealed class TungstenCubes()
+        : SwarmEvilPoolCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy, true)
     {
-        public override bool GainsBlock => true;
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [StunIntent.GetStaticHoverTip(),
+        HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
 
-        protected override HashSet<CardTag> CanonicalTags => [SwarmCardTagIds.Evz.GetModCardTag()];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new BlockVar(74m, ValueProp.Move),
             new("Gold", -21m),
         ];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+            ArgumentNullException.ThrowIfNull(cardPlay.Target);
+
             await PlayerCmd.GainGold(DynamicVars["Gold"].IntValue, Owner);
+
+            await CreatureCmd.Stun(cardPlay.Target);
+
+            if (Owner.Gold < 0)
+                await CardCmd.Exhaust(choiceContext, this);
         }
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Gold"].UpgradeValueBy(10m);
+            EnergyCost.UpgradeBy(-1);
         }
     }
 }
