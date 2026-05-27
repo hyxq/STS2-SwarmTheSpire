@@ -30,7 +30,7 @@
   "SWARM_THE_SPIRE_CARD_BIRTHDAY_EXCLAIM.title": "生日！",
   "SWARM_THE_SPIRE_CARD_PIRATE_NEURO.description": "造成{Damage:diff()}点伤害。\n如果敌人的意图是攻击，则多攻击一次。",
   "SWARM_THE_SPIRE_CARD_PIRATE_NEURO.title": "海盗Neuro",
-  "SWARM_THE_SPIRE_CARD_PIRATE_EVIL.description": "造成{Damage:diff()}点伤害。\n如果敌人有[gold]虚弱[/gold]，抽{Cards:diff()}张牌。\n[gold]斩杀[/gold]时，获得{Gold:diff()}[gold]金币[/gold]。",
+  "SWARM_THE_SPIRE_CARD_PIRATE_EVIL.description": "造成{Damage:diff()}点伤害。\n如果敌人有[gold]虚弱[/gold]，多攻击一次。\n如果敌人是[gold]/p[/gold]，获得等同于所造成伤害的[gold]金币[/gold]。",
   "SWARM_THE_SPIRE_CARD_PIRATE_EVIL.title": "海盗Evil",
   "SWARM_THE_SPIRE_CARD_EVZ.description": "从3张在EVZ中出现过的卡牌中选择1张加入手牌，这张牌在本回合耗能变为0。",
   "SWARM_THE_SPIRE_CARD_EVZ.title": "EVZ",
