@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Audio;
+using STS2RitsuLib.CardTags;
 using SwarmTheSpire;
 using SwarmTheSpire.Powers;
 
@@ -14,7 +15,7 @@ namespace SwarmTheSpire.Cards
     public sealed class PipesEvil()
         : SwarmEvilPoolCard(3, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies, true)
     {
-        protected override IEnumerable<string> RegisteredCardTagIds => [SwarmCardTagIds.Evz];
+        protected override HashSet<CardTag> CanonicalTags => [SwarmCardTagIds.Evz.GetModCardTag()];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [StunIntent.GetStaticHoverTip()];

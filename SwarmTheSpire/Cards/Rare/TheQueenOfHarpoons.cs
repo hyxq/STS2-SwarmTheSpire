@@ -2,7 +2,8 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using STS2RitsuLib.Content;
+using STS2RitsuLib.CardTags;
+using STS2RitsuLib.Keywords;
 using SwarmTheSpire;
 using SwarmTheSpire.Powers;
 
@@ -11,11 +12,11 @@ namespace SwarmTheSpire.Cards
     public sealed class TheQueenOfHarpoons()
         : SwarmEvilPoolCard(2, CardType.Power, CardRarity.Rare, TargetType.Self, true)
     {
-        protected override IEnumerable<string> RegisteredCardTagIds => [SwarmCardTagIds.Evz];
+        protected override HashSet<CardTag> CanonicalTags => [SwarmCardTagIds.Evz.GetModCardTag()];
 
-        protected override IEnumerable<string> RegisteredKeywordIds =>
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
         [
-            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon"),
+            SwarmKeywords.Harpoon.GetModKeywordCardKeyword(),
         ];
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {

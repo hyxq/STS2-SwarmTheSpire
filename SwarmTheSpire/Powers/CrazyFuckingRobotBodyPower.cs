@@ -9,9 +9,9 @@ namespace SwarmTheSpire.Powers
     public sealed class CrazyFuckingRobotBodyPower : SwarmPowerTemplate
     {
         public override string CustomPackedIconPath =>
-            "res://SwarmTheSpire/images/powers/SwarmTheSpire-miles_power.png";
+            "res://SwarmTheSpire/images/powers/SwarmTheSpire_MilesPower.png";
 
-        public override string CustomBigIconPath => "res://SwarmTheSpire/images/powers/SwarmTheSpire-miles_power.png";
+        public override string CustomBigIconPath => "res://SwarmTheSpire/images/powers/SwarmTheSpire_MilesPower.png";
 
         public override PowerType Type => PowerType.Buff;
 

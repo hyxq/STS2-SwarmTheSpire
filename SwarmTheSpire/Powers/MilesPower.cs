@@ -32,7 +32,7 @@ namespace SwarmTheSpire.Powers
             return target != Owner ? 1m : DynamicVars["DamageIncrease"].BaseValue;
         }
 
-        public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+        public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
         {
             if ((int)side == 2) await PowerCmd.TickDownDuration(this);
         }

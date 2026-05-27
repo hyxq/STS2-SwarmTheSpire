@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
-using STS2RitsuLib.Content;
+using STS2RitsuLib.CardTags;
 using STS2RitsuLib.Keywords;
 using SwarmTheSpire.Powers;
 using SwarmTheSpire;
@@ -18,15 +18,15 @@ namespace SwarmTheSpire.Cards;
 public sealed class Harpoon()
     : SwarmTokenPoolCard(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy, false)
 {
-    protected override IEnumerable<string> RegisteredKeywordIds =>
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
-            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon"),
-            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "catch"),
+        SwarmKeywords.Harpoon.GetModKeywordCardKeyword(),
+        SwarmKeywords.Catch.GetModKeywordCardKeyword(),
+        CardKeyword.Exhaust,
+        CardKeyword.Retain,
     ];
 
-    protected override IEnumerable<string> RegisteredCardTagIds => [SwarmCardTagIds.Harpoon];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Retain];
+    protected override HashSet<CardTag> CanonicalTags => [SwarmCardTagIds.Harpoon.GetModCardTag()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new DamageVar(1m, ValueProp.Unblockable)];

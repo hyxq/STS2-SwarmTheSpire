@@ -1,5 +1,6 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -26,7 +27,7 @@ namespace SwarmTheSpire.Relics
         public override bool ShowCounter => true;
 
         public override int DisplayAmount =>
-            CatchesData.Instance.GlobalCatchesCount + CatchesData.Instance.CurrentCombatCatches;
+            CatchesData.Instance.GlobalCatchesCount + CurrentCombatCatches;
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new PowerVar<MilesPower>(1m)];
@@ -37,21 +38,27 @@ namespace SwarmTheSpire.Relics
         [SavedProperty]
         public int SavedCatchCount { get; set; }
 
+        [SavedProperty]
+        public int CurrentCombatCatches { get; set; }
+
         public static void TryIncrementCatch(Player player)
         {
-            CatchesData.Instance.CurrentCombatCatches++;
             var relic = player.GetRelic<MilesRelic>();
-            relic?.Flash();
-            relic?.InvokeDisplayAmountChanged();
+            if (relic == null)
+                return;
+
+            relic.CurrentCombatCatches++;
+            relic.Flash();
+            relic.InvokeDisplayAmountChanged();
         }
 
         public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
-            ICombatState combatState)
+            IReadOnlyList<Creature> participants, ICombatState combatState)
         {
             if (side != Owner.Creature.Side || combatState.RoundNumber > 1)
                 return;
 
-            CatchesData.Instance.CurrentCombatCatches = 0;
+            CurrentCombatCatches = 0;
             InvokeDisplayAmountChanged();
             Flash();
             await PowerCmd.Apply<MilesPower>(choiceContext, combatState.HittableEnemies,
@@ -69,12 +76,12 @@ namespace SwarmTheSpire.Relics
             if (player != Owner || room is null)
                 return false;
 
-            var currentCombatCatches = CatchesData.Instance.CurrentCombatCatches;
+            var currentCombatCatches = CurrentCombatCatches;
             if (currentCombatCatches <= 0)
                 return false;
 
             CatchesData.Instance.GlobalCatchesCount += currentCombatCatches;
-            CatchesData.Instance.CurrentCombatCatches = 0;
+            CurrentCombatCatches = 0;
             SavedCatchCount = CatchesData.Instance.GlobalCatchesCount;
             InvokeDisplayAmountChanged();
 

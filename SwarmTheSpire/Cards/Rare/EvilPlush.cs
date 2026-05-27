@@ -75,13 +75,14 @@ namespace SwarmTheSpire.Cards
             }
         }
 
-        protected override PileType GetResultPileTypeForOnTurnEndInHandEffect()
-        {
-            if (!IsUpgraded)
-                return base.GetResultPileTypeForOnTurnEndInHandEffect();
-
-            return PileType.Hand;
-        }
+        // TODO: Update to GetResultPileTypeForOnTurnEndInHandEffect when available in 0.106
+        //protected override PileType GetResultPileType(CardPlay cardPlay)
+        //{
+        //    if (!IsUpgraded)
+        //        return base.GetResultPileType(cardPlay);
+        //
+        //    return PileType.Hand;
+        //}
 
 
         protected override void OnUpgrade() => AddKeyword(CardKeyword.Retain);

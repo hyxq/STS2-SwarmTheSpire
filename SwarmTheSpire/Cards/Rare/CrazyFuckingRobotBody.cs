@@ -23,7 +23,7 @@ namespace SwarmTheSpire.Cards
             var hittableEnemies = combatState.HittableEnemies;
             foreach (var item in hittableEnemies)
                 if (item.IsAlive)
-                    await PowerCmd.Apply<MilesPower>(choiceContext, item, 3m, Owner.Creature, this);
+                    await PowerCmd.Apply<MilesPower>(choiceContext, item, 2m, Owner.Creature, this);
         }
 
         protected override void OnUpgrade()

@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.CardTags;
-using STS2RitsuLib.Content;
+using STS2RitsuLib.Keywords;
 using SwarmTheSpire;
 using SwarmTheSpire.Powers;
 using SwarmTheSpire.Relics;
@@ -17,13 +17,13 @@ namespace SwarmTheSpire.Cards
     public sealed class HarpoonPursuit()
         : SwarmEvilPoolCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, true)
     {
-        protected override IEnumerable<string> RegisteredKeywordIds =>
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
         [
-            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon"),
-            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "catch"),
+            SwarmKeywords.Harpoon.GetModKeywordCardKeyword(),
+            SwarmKeywords.Catch.GetModKeywordCardKeyword(),
         ];
 
-        protected override IEnumerable<string> RegisteredCardTagIds => [SwarmCardTagIds.Harpoon];
+        protected override HashSet<CardTag> CanonicalTags => [SwarmCardTagIds.Harpoon.GetModCardTag()];
 
         protected override bool ShouldGlowGoldInternal => WasLastCardPlayedHarpoon;
 

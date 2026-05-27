@@ -1,5 +1,6 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -13,7 +14,7 @@ namespace SwarmTheSpire.Relics
         public override RelicRarity Rarity => RelicRarity.Ancient;
 
         public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
-            ICombatState combatState)
+            IReadOnlyList<Creature> participants, ICombatState combatState)
         {
             if (side != Owner.Creature.Side)
                 return;
@@ -24,7 +25,7 @@ namespace SwarmTheSpire.Relics
 
             if (combatState.RoundNumber <= 1)
             {
-                CatchesData.Instance.CurrentCombatCatches = 0;
+                CurrentCombatCatches = 0;
                 InvokeDisplayAmountChanged();
             }
         }

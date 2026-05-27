@@ -13,12 +13,14 @@ namespace SwarmTheSpire.Cards
     public sealed class Advent()
         : SwarmEvilPoolCard(0, CardType.Skill, CardRarity.Ancient, TargetType.Self, true)
     {
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Eternal];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
             HoverTipFactory.FromPower<MilesPower>(),
             HoverTipFactory.FromPower<ArtifactPower>(),
+            //HoverTipFactory.FromCard<BirthdayDot>(),
+            //HoverTipFactory.FromCard<BirthdayExclaim>(),
         ];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -26,9 +28,9 @@ namespace SwarmTheSpire.Cards
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
+            await CardPileCmd.Draw(choiceContext, DynamicVars["Birthday"].BaseValue, Owner, false);
             await CreatureCmd.Heal(Owner.Creature, DynamicVars["Birthday"].BaseValue, true);
             await PlayerCmd.GainEnergy(DynamicVars["Birthday"].BaseValue, Owner);
-            await CardPileCmd.Draw(choiceContext, DynamicVars["Birthday"].BaseValue, Owner, false);
             await PowerCmd.Apply<ArtifactPower>(choiceContext, Owner.Creature, DynamicVars["Birthday"].BaseValue,
                 Owner.Creature, this, false);
 
@@ -40,6 +42,8 @@ namespace SwarmTheSpire.Cards
                         Owner.Creature, this, false);
                 }
             }
+
+            //await PowerCmd.Apply<AdventInitialTrackingPower>(choiceContext, Owner.Creature, 12m, Owner.Creature, this, false);
         }
 
         protected override void OnUpgrade() => AddKeyword(CardKeyword.Innate);

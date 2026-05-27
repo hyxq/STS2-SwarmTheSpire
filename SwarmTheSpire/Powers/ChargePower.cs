@@ -41,7 +41,7 @@ public sealed class ChargePower : SwarmPowerTemplate
 
     protected override IEnumerable<string> RegisteredKeywordIds =>
         [
-            ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon"),
+            SwarmKeywords.Harpoon,
         ];
 
     public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power,

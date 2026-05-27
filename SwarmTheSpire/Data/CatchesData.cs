@@ -23,8 +23,6 @@ namespace SwarmTheSpire.Data
             }
         }
 
-        public int CurrentCombatCatches { get; set; }
-
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private void OnPropertyChanged(string propertyName) =>

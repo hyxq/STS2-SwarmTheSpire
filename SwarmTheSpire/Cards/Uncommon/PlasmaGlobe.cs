@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
+using STS2RitsuLib.CardTags;
 using SwarmTheSpire;
 using SwarmTheSpire.Powers;
 
@@ -10,7 +11,7 @@ namespace SwarmTheSpire.Cards
 {
     public sealed class PlasmaGlobe() : SwarmEvilPoolCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, true)
     {
-        protected override IEnumerable<string> RegisteredCardTagIds => [SwarmCardTagIds.Evz];
+        protected override HashSet<CardTag> CanonicalTags => [SwarmCardTagIds.Evz.GetModCardTag()];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<WeakPower>(),

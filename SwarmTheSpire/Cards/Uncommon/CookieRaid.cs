@@ -28,7 +28,7 @@ namespace SwarmTheSpire.Cards
                 await CardCmd.Exhaust(choiceContext, selected, false, false);
             }
 
-            await CreatureCmd.Heal(Owner.Creature, cost, true);
+            await CreatureCmd.Heal(Owner.Creature, cost*2, true);
         }
 
         protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);

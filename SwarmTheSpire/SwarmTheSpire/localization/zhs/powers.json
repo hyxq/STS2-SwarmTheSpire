@@ -57,5 +57,13 @@
   "SWARM_THE_SPIRE_POWER_CHARGE_POWER.title": "蓄力",
   "SWARM_THE_SPIRE_POWER_DIABOLIC_FORM_POWER.description": "在你的回合结束时，失去生命并获得格挡。",
   "SWARM_THE_SPIRE_POWER_DIABOLIC_FORM_POWER.smartDescription": "在你的回合结束时，失去[blue]{Amount}[/blue]点生命并获得[blue]{Amount}[/blue]点格挡。",
-  "SWARM_THE_SPIRE_POWER_DIABOLIC_FORM_POWER.title": "邪神形态"
+  "SWARM_THE_SPIRE_POWER_DIABOLIC_FORM_POWER.title": "邪神形态",
+  "SWARM_THE_SPIRE_POWER_ADVENT_TRACKING_POWER.description": "再打出12张牌后，在手牌中加入[gold]生日！[/gold]。",
+  "SWARM_THE_SPIRE_POWER_ADVENT_TRACKING_POWER.smartDescription": "再打出[blue]{Amount}[/blue]张牌后，度过一次[gold]生日！[/gold]。",
+  "SWARM_THE_SPIRE_POWER_ADVENT_TRACKING_POWER.title": "生日倒计时",
+  "SWARM_THE_SPIRE_POWER_ADVENT_INITIAL_TRACKING_POWER.description": "再打出12张牌后，在手牌中加入[gold]生日……[/gold]。",
+  "SWARM_THE_SPIRE_POWER_ADVENT_INITIAL_TRACKING_POWER.smartDescription": "再打出[blue]{Amount}[/blue]张牌后，度过一次[gold]生日……[/gold]。",
+  "SWARM_THE_SPIRE_POWER_ADVENT_INITIAL_TRACKING_POWER.title": "生日倒计时",
+  "SWARM_THE_SPIRE_POWER_BIRTHDAY_DOT_EXHAUST_POWER.description": "在每回合开始时获得2层[gold]脆弱[/gold]、[gold]易伤[/gold]与[gold]虚弱[/gold]。",
+  "SWARM_THE_SPIRE_POWER_BIRTHDAY_DOT_EXHAUST_POWER.title": "我会永远记得今天......"
 }

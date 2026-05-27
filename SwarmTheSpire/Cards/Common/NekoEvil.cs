@@ -5,13 +5,14 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.CardTags;
 using SwarmTheSpire;
 
 namespace SwarmTheSpire.Cards
 {
     public sealed class NekoEvil() : SwarmEvilPoolCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, true)
     {
-        protected override IEnumerable<string> RegisteredCardTagIds => [SwarmCardTagIds.Evz];
+        protected override HashSet<CardTag> CanonicalTags => [SwarmCardTagIds.Evz.GetModCardTag()];
 
         protected override bool ShouldGlowGoldInternal
         {

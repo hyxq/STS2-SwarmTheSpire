@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.CardTags;
 using SwarmTheSpire;
 
 namespace SwarmTheSpire.Cards
@@ -11,7 +12,7 @@ namespace SwarmTheSpire.Cards
     public sealed class PirateNeuro()
         : SwarmEvilPoolCard(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, true)
     {
-        protected override IEnumerable<string> RegisteredCardTagIds => [SwarmCardTagIds.Evz];
+        protected override HashSet<CardTag> CanonicalTags => [SwarmCardTagIds.Evz.GetModCardTag()];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new DamageVar(5m, ValueProp.Move)];

@@ -1,6 +1,7 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -22,7 +23,7 @@ namespace SwarmTheSpire.Powers
         public override PowerStackType StackType => PowerStackType.Counter;
 
         protected override IEnumerable<string> RegisteredKeywordIds =>
-            [ModContentRegistry.GetQualifiedKeywordId(Const.ModId, "harpoon")];
+            [SwarmKeywords.Harpoon];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
@@ -59,7 +60,7 @@ namespace SwarmTheSpire.Powers
         }
 
         public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
-            ICombatState combatState)
+            IReadOnlyList<Creature> participants, ICombatState combatState)
         {
             if (side != Owner.Side)
                 return Task.CompletedTask;

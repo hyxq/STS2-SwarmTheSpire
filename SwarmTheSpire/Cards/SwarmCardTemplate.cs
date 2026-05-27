@@ -15,3 +15,4 @@ namespace SwarmTheSpire.Cards
             new(Const.Paths.Card(GetType().Name), Const.Paths.Card(GetType().Name));
     }
 }
+
