@@ -10,12 +10,8 @@ namespace SwarmTheSpire.Cards
     public sealed class NeuroPlay()
         : SwarmEvilPoolCard(2, CardType.Power, CardRarity.Rare, TargetType.Self, true)
     {
-        protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new BlockVar(21m, ValueProp.Move)];
-
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay, false);
             await PowerCmd.Apply<NeuroPlayPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this, false);
             PlayerCmd.EndTurn(Owner, false, null);
         }
