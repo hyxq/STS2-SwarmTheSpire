@@ -8,6 +8,7 @@ namespace SwarmTheSpire.Data
         public static readonly CatchesData Instance = new();
 
         private int _globalCatchesCount;
+        private int _currentCombatCatches;
 
         [SavedProperty]
         public int GlobalCatchesCount
@@ -20,6 +21,19 @@ namespace SwarmTheSpire.Data
 
                 _globalCatchesCount = value;
                 OnPropertyChanged(nameof(GlobalCatchesCount));
+            }
+        }
+
+        public int CurrentCombatCatches
+        {
+            get => _currentCombatCatches;
+            set
+            {
+                if (_currentCombatCatches == value)
+                    return;
+
+                _currentCombatCatches = value;
+                OnPropertyChanged(nameof(CurrentCombatCatches));
             }
         }
 

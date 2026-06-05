@@ -1,6 +1,8 @@
 using System.Runtime.InteropServices;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -62,6 +64,14 @@ namespace SwarmTheSpire.Cards
                         Owner.Creature, this);
         }
 
+        public override async Task AfterSideTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+        {
+            if (side != CombatSide.Player || !Keywords.Contains(CardKeyword.Retain) || Pile?.Type != PileType.Discard)
+                return;
+
+            await CardPileCmd.Add(this, PileType.Hand, CardPilePosition.Top);
+        }
+
         public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
             bool causedByEthereal)
         {
@@ -75,14 +85,7 @@ namespace SwarmTheSpire.Cards
             }
         }
 
-        // TODO: Update to GetResultPileTypeForOnTurnEndInHandEffect when available in 0.106
-        //protected override PileType GetResultPileType(CardPlay cardPlay)
-        //{
-        //    if (!IsUpgraded)
-        //        return base.GetResultPileType(cardPlay);
-        //
-        //    return PileType.Hand;
-        //}
+
 
 
         protected override void OnUpgrade() => AddKeyword(CardKeyword.Retain);

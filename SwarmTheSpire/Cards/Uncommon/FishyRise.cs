@@ -1,14 +1,11 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Runs;
+using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
-using STS2RitsuLib.Content;
-using STS2RitsuLib.Keywords;
-using SwarmTheSpire.Data;
+using SwarmTheSpire.RunData;
 
 namespace SwarmTheSpire.Cards
 {
@@ -17,16 +14,17 @@ public sealed class FishyRise()
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {   new DamageVar(1m, ValueProp.Move),
-		new CalculationBaseVar(0m),
-		new CalculationExtraVar(1m),
-		new CalculatedVar("CalculatedHits").WithMultiplier((CardModel card, Creature? _) => CatchesData.Instance.GlobalCatchesCount)};
+		new CalculationBaseVar(0m)};
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-		int hits = CatchesData.Instance.GlobalCatchesCount;
+		int hits = Owner?.RunState is RunState runState
+            ? CatchesRunDataEntry.Catches.Get(runState).GlobalCatchesCount
+            : 0;
 		ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount((int)((CalculatedVar)base.DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target)).FromCard(this)
+		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
 			.WithHitCount(hits)
+			.FromCard(this)
 			.Targeting(cardPlay.Target)
 			.WithHitFx("vfx/vfx_attack_slash")
 			.Execute(choiceContext);

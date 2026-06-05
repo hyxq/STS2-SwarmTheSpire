@@ -43,6 +43,7 @@ namespace SwarmTheSpire.Cards
         protected override void OnUpgrade()
         {
             DynamicVars["MilesPower"].UpgradeValueBy(1m);
+            DynamicVars["StrengthLoss"].UpgradeValueBy(2m);
         }
     }
 }

@@ -16,6 +16,8 @@ namespace SwarmTheSpire.Cards
     {
         protected override HashSet<CardTag> CanonicalTags => [SwarmCardTagIds.Evz.GetModCardTag()];
 
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
         protected override bool ShouldGlowGoldInternal
         {
             get
@@ -32,7 +34,7 @@ namespace SwarmTheSpire.Cards
         ];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new DamageVar(7m, ValueProp.Move)];
+            [new DamageVar(8m, ValueProp.Move)];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {

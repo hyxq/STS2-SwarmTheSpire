@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using SwarmTheSpire.Data;
 using SwarmTheSpire.Powers;
 
 namespace SwarmTheSpire.Relics
@@ -25,7 +24,7 @@ namespace SwarmTheSpire.Relics
 
             if (combatState.RoundNumber <= 1)
             {
-                CurrentCombatCatches = 0;
+                _currentCombatCatches = 0;
                 InvokeDisplayAmountChanged();
             }
         }

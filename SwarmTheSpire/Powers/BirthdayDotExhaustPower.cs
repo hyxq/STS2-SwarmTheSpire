@@ -18,7 +18,7 @@ namespace SwarmTheSpire.Powers
         public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
             IReadOnlyList<Creature> participants, ICombatState combatState)
         {
-            if (side != Owner.Side)
+            if (side != Owner.Side)      
                 return;
 
             Flash();

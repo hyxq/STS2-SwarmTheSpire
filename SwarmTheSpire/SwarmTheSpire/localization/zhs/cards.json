@@ -21,7 +21,7 @@
   "SWARM_THE_SPIRE_CARD_SPARE_HARPOON.title": "备用鱼叉",
   "SWARM_THE_SPIRE_CARD_EVIL_STREAM.description": "给予{MilesPower:diff()}层[gold]/p[/gold]。",
   "SWARM_THE_SPIRE_CARD_EVIL_STREAM.title": "Evil直播",
-  "SWARM_THE_SPIRE_CARD_ADVENT.description": "抽1张牌。\n回复1点生命。\n获得1点能量。\n给予全体敌人1层[gold]/p[/gold]。\n获得1层人工制品。\n你将度过一次[gold]生日......。[/gold]",
+  "SWARM_THE_SPIRE_CARD_ADVENT.description": "抽1张牌。回复1点生命。获得1点能量。给予全体敌人1层[gold]/p[/gold]。获得1层人工制品。\n你将度过一次[gold]生日......。[/gold]",
   "SWARM_THE_SPIRE_CARD_ADVENT.title": "降生",
   "SWARM_THE_SPIRE_CARD_BIRTHDAY_DOT.exhaustTalk": "我会永远记得今天......",
   "SWARM_THE_SPIRE_CARD_BIRTHDAY_DOT.description": "生日到了......",
@@ -96,6 +96,8 @@
   "SWARM_THE_SPIRE_CARD_DIABOLIC_FORM.title": "邪神形态",
   "SWARM_THE_SPIRE_CARD_BOOM.description": "给予所有敌人{MilesPower:diff()}层[gold]/p[/gold]。\n造成等同于所有敌人[gold]/p[/gold]层数之和的伤害，获得等同于所造成伤害的[gold]金币[/gold]。",
   "SWARM_THE_SPIRE_CARD_BOOM.title": "BOOM！",
+  "SWARM_THE_SPIRE_CARD_ADD_TO_CART.description": "消耗{CalculatedDamage:diff()}[gold]金币[/gold]。\n从3张其他角色的卡牌中选择1张获得，这张牌在本回合内可以免费打出。\n将此牌返回你的手牌。\n本回合下次金币消耗增加10。",
+  "SWARM_THE_SPIRE_CARD_ADD_TO_CART.title": "加入购物车！！！",
   "SWARM_THE_SPIRE_CARD_CEO_EVIL.description": "只能在金币不少于100时打出。\n当你获得或消耗金币时，获得等量[gold]格挡[/gold]。",
   "SWARM_THE_SPIRE_CARD_CEO_EVIL.title": "CEO Evil"
 }

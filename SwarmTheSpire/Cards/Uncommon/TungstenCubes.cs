@@ -20,14 +20,14 @@ namespace SwarmTheSpire.Cards
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new("Gold", -21m),
+            new GoldVar(-21)
         ];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
             ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-            await PlayerCmd.GainGold(DynamicVars["Gold"].IntValue, Owner);
+            await PlayerCmd.GainGold(DynamicVars.Gold.BaseValue, Owner);
 
             await CreatureCmd.Stun(cardPlay.Target);
 

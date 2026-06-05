@@ -1,3 +1,4 @@
+using System.Linq;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -10,11 +11,14 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Keywords;
+using STS2RitsuLib.RunData;
 using SwarmTheSpire.Character;
-using SwarmTheSpire.Data;
 using SwarmTheSpire.Powers;
+using SwarmTheSpire.RunData;
 
 namespace SwarmTheSpire.Relics
 {
@@ -27,19 +31,21 @@ namespace SwarmTheSpire.Relics
         public override bool ShowCounter => true;
 
         public override int DisplayAmount =>
-            CatchesData.Instance.GlobalCatchesCount + CurrentCombatCatches;
+            Owner?.RunState is RunState runState
+                ? CatchesRunDataEntry.Catches.Get(runState).GlobalCatchesCount + _currentCombatCatches
+                : 0;
+
+        protected int _currentCombatCatches;
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new PowerVar<MilesPower>(1m)];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-            [HoverTipFactory.FromPower<MilesPower>()];
+            [HoverTipFactory.FromPower<MilesPower>(),
+            HoverTipFactory.FromKeyword(SwarmKeywords.Catch.GetModKeywordCardKeyword()),];
 
         [SavedProperty]
         public int SavedCatchCount { get; set; }
-
-        [SavedProperty]
-        public int CurrentCombatCatches { get; set; }
 
         public static void TryIncrementCatch(Player player)
         {
@@ -47,9 +53,23 @@ namespace SwarmTheSpire.Relics
             if (relic == null)
                 return;
 
-            relic.CurrentCombatCatches++;
-            relic.Flash();
-            relic.InvokeDisplayAmountChanged();
+            relic._currentCombatCatches++;
+
+            var allPlayers = player.Creature?.CombatState?.Allies
+                .Select(c => c.Player)
+                .Where(p => p != null)
+                .Distinct()
+                ?? [player];
+
+            foreach (var p in allPlayers)
+            {
+                var r = p.GetRelic<MilesRelic>();
+                if (r != null)
+                {
+                    r.Flash();
+                    r.InvokeDisplayAmountChanged();
+                }
+            }
         }
 
         public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
@@ -58,7 +78,7 @@ namespace SwarmTheSpire.Relics
             if (side != Owner.Creature.Side || combatState.RoundNumber > 1)
                 return;
 
-            CurrentCombatCatches = 0;
+            _currentCombatCatches = 0;
             InvokeDisplayAmountChanged();
             Flash();
             await PowerCmd.Apply<MilesPower>(choiceContext, combatState.HittableEnemies,
@@ -67,7 +87,14 @@ namespace SwarmTheSpire.Relics
 
         public override async Task AfterObtained()
         {
-            CatchesData.Instance.GlobalCatchesCount = 0;
+            if (Owner?.RunState is RunState runState)
+            {
+                CatchesRunDataEntry.Catches.Modify(runState, data =>
+                {
+                    data.GlobalCatchesCount = 0;
+                });
+            }
+
             InvokeDisplayAmountChanged();
         }
 
@@ -76,13 +103,20 @@ namespace SwarmTheSpire.Relics
             if (player != Owner || room is null)
                 return false;
 
-            var currentCombatCatches = CurrentCombatCatches;
+            var currentCombatCatches = _currentCombatCatches;
             if (currentCombatCatches <= 0)
                 return false;
 
-            CatchesData.Instance.GlobalCatchesCount += currentCombatCatches;
-            CurrentCombatCatches = 0;
-            SavedCatchCount = CatchesData.Instance.GlobalCatchesCount;
+            if (Owner.RunState is not RunState runState)
+                return false;
+
+            CatchesRunDataEntry.Catches.Modify(runState, data =>
+            {
+                data.GlobalCatchesCount += currentCombatCatches;
+            });
+
+            _currentCombatCatches = 0;
+            SavedCatchCount = CatchesRunDataEntry.Catches.Get(runState).GlobalCatchesCount;
             InvokeDisplayAmountChanged();
 
             for (var i = 0; i < currentCombatCatches; i++)
@@ -142,8 +176,17 @@ namespace SwarmTheSpire.Relics
 
         public override async Task AfterRoomEntered(AbstractRoom room)
         {
-            if (CatchesData.Instance.GlobalCatchesCount < SavedCatchCount)
-                CatchesData.Instance.GlobalCatchesCount = SavedCatchCount;
+            if (Owner?.RunState is RunState runState)
+            {
+                var catches = CatchesRunDataEntry.Catches.Get(runState);
+                if (catches.GlobalCatchesCount < SavedCatchCount)
+                {
+                    CatchesRunDataEntry.Catches.Modify(runState, data =>
+                    {
+                        data.GlobalCatchesCount = SavedCatchCount;
+                    });
+                }
+            }
 
             InvokeDisplayAmountChanged();
 
