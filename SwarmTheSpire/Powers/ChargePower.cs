@@ -24,7 +24,6 @@ public sealed class ChargePower : SwarmPowerTemplate
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
-            HoverTipFactory.FromCard<Harpoon>(),
         ];
 
 
@@ -37,7 +36,19 @@ public sealed class ChargePower : SwarmPowerTemplate
         if (cardSource is null || !cardSource.HasModCardTag(SwarmCardTagIds.Harpoon))
 			return 0m;
 		return base.Amount;
-	}	
+	}
+
+    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
+        Creature? dealer, CardModel? cardSource)
+    {
+        if (base.Owner != dealer)
+            return 1m;
+
+        if (cardSource is HarpoonSnipe)
+            return 2m;
+
+        return 1m;
+    }
 
     protected override IEnumerable<string> RegisteredKeywordIds =>
         [
