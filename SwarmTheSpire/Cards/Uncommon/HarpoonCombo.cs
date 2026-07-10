@@ -1,0 +1,97 @@
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands.Builders;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.CardTags;
+using STS2RitsuLib.Keywords;
+using SwarmTheSpire;
+using SwarmTheSpire.Powers;
+using SwarmTheSpire.Relics;
+
+namespace SwarmTheSpire.Cards
+{
+    public sealed class HarpoonCombo()
+        : SwarmEvilPoolCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, true)
+    {
+        protected override HashSet<CardTag> CanonicalTags => [SwarmCardTagIds.Harpoon.GetModCardTag()];
+
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        [
+            SwarmKeywords.Harpoon.GetModKeywordCardKeyword(),
+            CardKeyword.Exhaust,
+        ];
+
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+            [HoverTipFactory.Static(StaticHoverTip.Fatal)];
+
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [
+            new DamageVar(9m, ValueProp.Move),
+            new CardsVar(1),
+        ];
+
+        private bool HasQueenPower => CombatManager.Instance.IsInProgress && Owner.Creature.HasPower<QueenPower>();
+
+        protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+        {
+            ArgumentNullException.ThrowIfNull(cardPlay.Target);
+            var shouldTriggerFatal = cardPlay.Target.Powers.All(static power => power.ShouldOwnerDeathTriggerFatal());
+            var combatState = CombatState;
+            var attack = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+                .Execute(choiceContext);
+            TryIncrementCatch(shouldTriggerFatal, attack);
+
+            if (HasQueenPower)
+            {
+                ArgumentNullException.ThrowIfNull(combatState);
+                var queenPowerCount = Owner.Creature.GetPowerAmount<QueenPower>();
+                for (var i = 0; i < queenPowerCount; i++)
+                {
+                    foreach (var hittableEnemy in combatState.HittableEnemies)
+                    {
+                        var followUpAttack = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this)
+                            .Targeting(hittableEnemy)
+                            .Execute(choiceContext);
+                        TryIncrementCatch(shouldTriggerFatal, followUpAttack);
+                    }
+                }
+            }
+
+            await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+            return;
+
+            void TryIncrementCatch(bool canTriggerFatal, AttackCommand attackCommand)
+            {
+                if (!canTriggerFatal ||
+                    !attackCommand.Results.SelectMany(static r => r)
+                        .Any(static result => result is { OverkillDamage: 0, WasTargetKilled: true }))
+                    return;
+
+                MilesRelic.TryIncrementCatch(Owner);
+            }
+        }
+
+        public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
+        {
+            if (Pile?.Type != PileType.Exhaust)
+                return Task.CompletedTask;
+
+            if (!SwarmCardPredicates.IsHarpoon(cardPlay.Card) || cardPlay.Card == this ||
+                cardPlay.Card.GetType() == GetType() ||
+                cardPlay.Card.Owner.Creature != Owner.Creature)
+                return Task.CompletedTask;
+
+            CardPileCmd.Add(this, PileType.Hand, CardPilePosition.Top);
+            return Task.CompletedTask;
+        }
+
+        protected override void OnUpgrade()
+        {
+            DynamicVars.Damage.UpgradeValueBy(3m);
+        }
+    }
+}
