@@ -1,51 +1,30 @@
-/*using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.CommonUi;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2RitsuLib.CardTags;
+using SwarmTheSpire;
 using SwarmTheSpire.Powers;
 
 namespace SwarmTheSpire.Cards
 {
     public sealed class FishyValor()
-        : SwarmEvilPoolCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
+        : SwarmEvilPoolCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, true)
     {
-        public interface IChoosable
-        {
-            Task OnChosen();
-        }
-
+        protected override IEnumerable<DynamicVar> CanonicalVars =>
+            [new PowerVar<FishyValorPower>(1m)];
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-        [
-            HoverTipFactory.FromPower<ChargePower>(),
-            HoverTipFactory.FromCard<Fishy1>(),
-            HoverTipFactory.FromCard<Fishy2>(),
-            HoverTipFactory.FromCard<Fishy3>(),
-        ];
-
-        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain, CardKeyword.Exhaust];
+            [HoverTipFactory.FromPower<ChargePower>()];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            var options = new List<CardModel>
-            {
-                (CardModel)ModelDb.Card<Fishy1>().MutableClone(),
-                (CardModel)ModelDb.Card<Fishy2>().MutableClone(),
-                (CardModel)ModelDb.Card<Fishy3>().MutableClone(),
-            };
+            await PowerCmd.Apply<FishyValorPower>(choiceContext, Owner.Creature, DynamicVars["FishyValorPower"].BaseValue, Owner.Creature, this);
+        }
 
-            foreach (var item in options)
-            {
-                item.Owner = Owner;
-                if (IsUpgraded)
-                    CardCmd.Upgrade(item, CardPreviewStyle.HorizontalLayout);
-            }
-
-            var pick = await CardSelectCmd.FromChooseACardScreen(choiceContext, options, Owner, false);
-            if (pick is IChoosable choosable)
-                await choosable.OnChosen();
+        protected override void OnUpgrade()
+	    {
+            DynamicVars["FishyValorPower"].UpgradeValueBy(1m);
         }
     }
 }
-*/
