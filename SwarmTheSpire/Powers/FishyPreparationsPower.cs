@@ -29,13 +29,25 @@ namespace SwarmTheSpire.Powers
             HoverTipFactory.Static(StaticHoverTip.Block),
         ];
 
-        public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+        public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
+            IReadOnlyList<Creature> participants, ICombatState combatState)
         {
             if (side != Owner.Side)
                 return;
 
             Flash();
             await PowerCmd.Apply<ChargePower>(choiceContext, Owner, Amount, Owner, null);
+
+            return;
+        }
+
+        public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+        {
+            if (side != Owner.Side)
+                return;
+
+            Flash();
+
             await CreatureCmd.GainBlock(Owner, Owner.GetPowerAmount<ChargePower>(), ValueProp.Unpowered, null);
         }
     }
