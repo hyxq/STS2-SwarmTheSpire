@@ -44,7 +44,7 @@ public sealed class ChargePower : SwarmPowerTemplate
             SwarmKeywords.Harpoon,
         ];
 
-    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power,
+    /*public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power,
         decimal amount, Creature? applier, CardModel? cardSource)
     {
         if (!ReferenceEquals(power, this) || Amount <= 0)
@@ -65,7 +65,7 @@ public sealed class ChargePower : SwarmPowerTemplate
         var created = CardFactory.GetForCombat(player, [ModelDb.Card<Harpoon>()], 1,
             player.RunState.Rng.CombatCardGeneration);
         await CardPileCmd.AddGeneratedCardsToCombat(created, PileType.Hand, player, CardPilePosition.Top);
-    }
+    }*/
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
@@ -75,6 +75,6 @@ public sealed class ChargePower : SwarmPowerTemplate
         if (!cardPlay.Card.HasModCardTag(SwarmCardTagIds.Harpoon))
             return;
 
-        await PowerCmd.Remove(this);
+        await PowerCmd.TickDownDuration(this);
     }
 }

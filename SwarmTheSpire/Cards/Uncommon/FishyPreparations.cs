@@ -25,8 +25,6 @@ namespace SwarmTheSpire.Cards
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            await PowerCmd.Apply<ChargePower>(choiceContext, Owner.Creature, DynamicVars["ChargePower"].BaseValue,
-                Owner.Creature, this, false);
             await PowerCmd.Apply<FishyPreparationsPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this, false);
         }
 
