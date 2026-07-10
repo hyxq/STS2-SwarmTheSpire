@@ -1,4 +1,4 @@
-using MegaCrit.Sts2.Core.Commands;
+/*using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -32,3 +32,4 @@ namespace SwarmTheSpire.Cards
         protected override void OnUpgrade() => DynamicVars["ChargePower"].UpgradeValueBy(4m);
     }
 }
+*/
