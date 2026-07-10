@@ -28,7 +28,7 @@ namespace SwarmTheSpire.Cards
 
         protected override void OnUpgrade()
         {
-            EnergyCost.UpgradeBy(-1);
+            DynamicVars["MilesPower"].UpgradeValueBy(1m);
         }
     }
 }
