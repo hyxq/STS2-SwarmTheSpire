@@ -15,7 +15,7 @@ using SwarmTheSpire.Relics;
 
 namespace SwarmTheSpire.Cards;
 
-public sealed class Harpoon()
+public sealed class HarpoonThrow()
     : SwarmTokenPoolCard(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy, false)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
