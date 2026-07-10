@@ -23,7 +23,6 @@ namespace SwarmTheSpire.Cards
         [
             SwarmKeywords.Harpoon.GetModKeywordCardKeyword(),
             CardKeyword.Exhaust,
-            CardKeyword.Retain,
         ];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
@@ -31,7 +30,7 @@ namespace SwarmTheSpire.Cards
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(8m, ValueProp.Move),
+            new DamageVar(9m, ValueProp.Move),
             new CardsVar(1),
         ];
 
@@ -92,7 +91,7 @@ namespace SwarmTheSpire.Cards
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(3m);
+            AddKeyword(CardKeyword.Retain);
         }
     }
 }
