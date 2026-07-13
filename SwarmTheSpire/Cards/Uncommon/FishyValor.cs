@@ -13,7 +13,7 @@ namespace SwarmTheSpire.Cards
         : SwarmEvilPoolCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, true)
     {
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new PowerVar<FishyValorPower>(1m)];
+            [new PowerVar<FishyValorPower>(2m)];
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<ChargePower>()];
 
