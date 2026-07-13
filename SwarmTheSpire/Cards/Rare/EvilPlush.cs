@@ -1,5 +1,3 @@
-using System.Runtime.InteropServices;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -13,81 +11,61 @@ namespace SwarmTheSpire.Cards
 {
     public sealed class EvilPlush() : SwarmEvilPoolCard(0, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies, true)
     {
+        private decimal _trackedGold;
+
+        public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
         protected override IEnumerable<DynamicVar> CanonicalVars =>
             [new PowerVar<MilesPower>(1m)];
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             [HoverTipFactory.FromPower<MilesPower>()];
 
-        public override List<CardKeyword> CanonicalKeywords
+        public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            get
-            {
-                const int num = 1;
-                var list = new List<CardKeyword>(num);
-                CollectionsMarshal.SetCount(list, num);
-                CollectionsMarshal.AsSpan(list)[0] = CardKeyword.Exhaust;
-                return list;
-            }
-        }
-
-        public override bool HasTurnEndInHandEffect => true;
-
-        public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
-        {
-            if (card != this)
-            {
-                modifiedCost = originalCost;
-                return false;
-            }
-
-            var combatState = CombatState;
-            if (combatState == null)
-            {
-                modifiedCost = originalCost;
-                return false;
-            }
-
-            var num = combatState.Enemies.Where(c => c.IsAlive).Sum(c => c.GetPowerAmount<MilesPower>());
-            modifiedCost = num;
-            return true;
-        }
-
-        protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
-        {
-            var combatState = CombatState;
-            ArgumentNullException.ThrowIfNull(combatState);
-            var hittableEnemies = combatState.HittableEnemies;
-            foreach (var item in hittableEnemies)
-                if (item.IsAlive)
-                    await PowerCmd.Apply<MilesPower>(choiceContext, item, DynamicVars["MilesPower"].BaseValue,
-                        Owner.Creature, this);
-        }
-
-        public override async Task AfterSideTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
-        {
-            if (side != CombatSide.Player || !Keywords.Contains(CardKeyword.Retain) || Pile?.Type != PileType.Discard)
+            if (cardPlay.Card.Owner.Creature != Owner.Creature)
                 return;
 
-            await CardPileCmd.Add(this, PileType.Hand, CardPilePosition.Top);
+            var player = Owner.Creature.Player;
+            if (player == null)
+                return;
+
+            var currentGold = (decimal)player.Gold;
+
+            if (_trackedGold == 0)
+            {
+                _trackedGold = currentGold;
+                return;
+            }
+
+            var delta = currentGold - _trackedGold;
+            _trackedGold = currentGold;
+
+            // When gaining gold, add this card to hand
+            if (delta > 0)
+            {
+                await CardPileCmd.Add(this, PileType.Hand, CardPilePosition.Top);
+            }
         }
 
         public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
             bool causedByEthereal)
         {
-            var resolved = EnergyCost.GetResolved();
-            if (card == this)
-            {
-                var combatState = CombatState;
-                ArgumentNullException.ThrowIfNull(combatState);
-                await PowerCmd.Apply<MilesPower>(choiceContext, combatState.HittableEnemies, resolved,
-                    Owner.Creature, this);
-            }
+            if (card != this)
+                return;
+
+            EnergyCost.AddThisCombat(+1);
+
+            var combatState = CombatState;
+            ArgumentNullException.ThrowIfNull(combatState);
+
+            await PowerCmd.Apply<MilesPower>(choiceContext, combatState.HittableEnemies, DynamicVars["MilesPower"].BaseValue,
+                Owner.Creature, this);
         }
 
-
-
-
-        protected override void OnUpgrade() => AddKeyword(CardKeyword.Retain);
+        protected override void OnUpgrade()
+        {
+            DynamicVars["MilesPower"].UpgradeValueBy(1m);
+        }
     }
 }
