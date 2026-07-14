@@ -96,7 +96,7 @@
   "SWARM_THE_SPIRE_CARD_THE_QUEEN_OF_HARPOONS.title": "鱼叉女王",
   "SWARM_THE_SPIRE_CARD_DIABOLIC_FORM.description": "获得6点力量。\n给予所有敌人6层[gold]易伤[/gold]、[gold]虚弱[/gold]和[gold]/p[/gold]。\n在你的回合结束时，失去6点生命并获得6点格挡。",
   "SWARM_THE_SPIRE_CARD_DIABOLIC_FORM.title": "邪神形态",
-  "SWARM_THE_SPIRE_CARD_BOOM.description": "给予所有敌人{MilesPower:diff()}层[gold]/p[/gold]。\n造成等同于所有敌人[gold]/p[/gold]层数之和的伤害，获得等同于所造成伤害的[gold]金币[/gold]。",
+  "SWARM_THE_SPIRE_CARD_BOOM.description": "给予所有敌人{MilesPower:diff()}层[gold]/p[/gold]，然后将敌人的[gold]/p[/gold]层数翻倍。\n造成等同于所有敌人[gold]/p[/gold]层数之和的伤害，获得等同于所造成伤害的[gold]金币[/gold]。",
   "SWARM_THE_SPIRE_CARD_BOOM.title": "BOOM！",
   "SWARM_THE_SPIRE_CARD_ADD_TO_CART.description": "消耗{CalculatedDamage:diff()}[gold]金币[/gold]。\n从3张其他角色的卡牌中选择1张获得，这张牌在本回合内可以免费打出。\n将此牌返回你的手牌。\n本回合下次金币消耗增加10。",
   "SWARM_THE_SPIRE_CARD_ADD_TO_CART.title": "加入购物车！！！",
