@@ -30,7 +30,7 @@ namespace SwarmTheSpire.Cards
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(9m, ValueProp.Move),
+            new DamageVar(10m, ValueProp.Move),
             new CardsVar(1),
         ];
 
@@ -90,8 +90,9 @@ namespace SwarmTheSpire.Cards
         }
 
         protected override void OnUpgrade()
+        
         {
-            DynamicVars.Damage.UpgradeValueBy(3m);
+            AddKeyword(CardKeyword.Retain);
         }
     }
 }
