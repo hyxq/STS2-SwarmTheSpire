@@ -35,14 +35,14 @@ namespace SwarmTheSpire.Cards
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
             ArgumentNullException.ThrowIfNull(cardPlay.Target);
-            var num = cardPlay.Target.HasPower<WeakPower>();
-            var damage = DynamicVars.Damage.BaseValue;
-            if (num) damage += 1m;
-            await DamageCmd.Attack(damage).FromCard(this).Targeting(cardPlay.Target)
+            var isWeak = cardPlay.Target.HasPower<WeakPower>();
+            var bonusDamage = isWeak ? 1m : 0m;
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue + bonusDamage).FromCard(this).Targeting(cardPlay.Target)
                 .Execute(choiceContext);
             var combatState = CombatState;
             ArgumentNullException.ThrowIfNull(combatState);
-            await DamageCmd.Attack(damage).WithHitCount(DynamicVars.Repeat.IntValue).FromCard(this)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue + bonusDamage)
+                .WithHitCount(DynamicVars.Repeat.IntValue).FromCard(this)
                 .TargetingRandomOpponents(combatState)
                 .Execute(choiceContext);
         }

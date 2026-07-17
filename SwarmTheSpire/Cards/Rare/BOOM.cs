@@ -18,7 +18,7 @@ namespace SwarmTheSpire.Cards
             [HoverTipFactory.FromPower<MilesPower>()];
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
-            [new PowerVar<MilesPower>(1m)];
+            [new PowerVar<MilesPower>(2m)];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
@@ -48,15 +48,9 @@ namespace SwarmTheSpire.Cards
             var totalMiles = enemies.Sum(c => c.GetPowerAmount<MilesPower>());
             if (totalMiles > 0)
             {
-                var val = await DamageCmd.Attack(totalMiles).FromCard(this)
+                await DamageCmd.Attack(totalMiles).FromCard(this)
                     .TargetingAllOpponents(combatState)
                     .Execute(choiceContext);
-
-                var actualDamage = val.Results.SelectMany(static r => r)
-                    .Sum(static r => r.TotalDamage + r.OverkillDamage);
-
-                // Gain gold equal to actual damage dealt
-                await PlayerCmd.GainGold(actualDamage, Owner);
             }
         }
 
