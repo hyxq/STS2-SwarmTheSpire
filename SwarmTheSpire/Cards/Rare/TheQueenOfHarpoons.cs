@@ -11,7 +11,7 @@ using SwarmTheSpire.Powers;
 namespace SwarmTheSpire.Cards
 {
     public sealed class TheQueenOfHarpoons()
-        : SwarmEvilPoolCard(3, CardType.Power, CardRarity.Rare, TargetType.Self, true)
+        : SwarmEvilPoolCard(2, CardType.Power, CardRarity.Rare, TargetType.Self, true)
     {
         protected override HashSet<CardTag> CanonicalTags => [SwarmCardTagIds.Evz.GetModCardTag()];
 
@@ -26,8 +26,20 @@ namespace SwarmTheSpire.Cards
 
             var handPile = PileType.Hand.GetPile(base.Owner);
             var harpoonCards = handPile.Cards
-                .Where(c => c.HasModCardTag(SwarmCardTagIds.Harpoon))
+                .Where(c => c.HasModCardTag(SwarmCardTagIds.Harpoon.GetModCardTag()))
                 .ToList();
+
+            if (IsUpgraded)
+            {
+                foreach (var harpoonCard in harpoonCards)
+                {
+                    if (harpoonCard == this)
+                        continue;
+
+                    if (harpoonCard.IsUpgradable)
+                        CardCmd.Upgrade(harpoonCard);
+                }
+            }
 
             foreach (var harpoonCard in harpoonCards)
             {
@@ -40,11 +52,6 @@ namespace SwarmTheSpire.Cards
                 var target = base.Owner.RunState.Rng.CombatTargets.NextItem(base.CombatState.HittableEnemies);
                 await CardCmd.AutoPlay(choiceContext, harpoonCard, target);
             }
-        }
-
-        protected override void OnUpgrade()
-        {
-            EnergyCost.UpgradeBy(-1);
         }
     }
 }
