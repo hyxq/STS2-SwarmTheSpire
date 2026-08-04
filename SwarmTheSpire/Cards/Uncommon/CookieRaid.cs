@@ -31,6 +31,6 @@ namespace SwarmTheSpire.Cards
             await CreatureCmd.Heal(Owner.Creature, cost*2, true);
         }
 
-        protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
+            protected override void OnUpgrade() => AddKeyword(CardKeyword.Innate);
     }
 }

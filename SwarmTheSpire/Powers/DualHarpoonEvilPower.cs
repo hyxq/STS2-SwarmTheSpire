@@ -27,13 +27,12 @@ namespace SwarmTheSpire.Powers
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
-            HoverTipFactory.FromKeyword(CardKeyword.Retain),
             HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
         ];
 
         public override Task BeforeCardPlayed(CardPlay cardPlay)
         {
-            if (_wasUsedThisTurn || _trackedCard is not null || cardPlay.Card.Owner != Owner.Player || !cardPlay.Card.HasModCardTag(SwarmCardTagIds.Harpoon))
+            if (_wasUsedThisTurn || _trackedCard is not null || cardPlay.Card.Owner != Owner.Player || !cardPlay.Card.HasModCardTag(SwarmCardTagIds.Harpoon.GetModCardTag()))
 
                 return Task.CompletedTask;
 
@@ -50,7 +49,6 @@ namespace SwarmTheSpire.Powers
             for (var i = 0; i < count; i++)
             {
                 var clone = cardPlay.Card.CreateClone();
-                CardCmd.ApplyKeyword(clone, CardKeyword.Retain);
                 CardCmd.ApplyKeyword(clone, CardKeyword.Exhaust);
                 await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, Owner.Player, CardPilePosition.Top);
             }

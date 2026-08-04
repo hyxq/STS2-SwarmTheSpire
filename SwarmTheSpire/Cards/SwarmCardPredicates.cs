@@ -7,5 +7,5 @@ namespace SwarmTheSpire.Cards;
 internal static class SwarmCardPredicates
 {
     internal static bool IsHarpoon(CardModel? card) =>
-        card is not null && card.HasModCardTag(SwarmCardTagIds.Harpoon);
+        card is not null && card.HasModCardTag(SwarmCardTagIds.Harpoon.GetModCardTag());
 }

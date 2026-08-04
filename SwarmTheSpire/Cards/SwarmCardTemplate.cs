@@ -11,8 +11,10 @@ namespace SwarmTheSpire.Cards
         bool shouldShowInCardLibrary)
         : ModCardTemplate(baseCost, type, rarity, targetType, shouldShowInCardLibrary)
     {
-        public override CardAssetProfile AssetProfile =>
-            new(Const.Paths.Card(GetType().Name), Const.Paths.Card(GetType().Name));
+    public override CardAssetProfile AssetProfile => new(
+            PortraitPath: Const.Paths.Card(GetType().Name)
+        );
     }
+
 }
 

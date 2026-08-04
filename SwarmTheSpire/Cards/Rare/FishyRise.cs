@@ -5,16 +5,26 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.CardTags;
+using STS2RitsuLib.Keywords;
 using SwarmTheSpire.RunData;
 
 namespace SwarmTheSpire.Cards
 {
 public sealed class FishyRise()
-    : SwarmEvilPoolCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, true)
+    : SwarmEvilPoolCard(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy, true)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {   new DamageVar(1m, ValueProp.Move),
 		new CalculationBaseVar(0m)};
+	
+	public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        [
+            SwarmKeywords.Harpoon.GetModKeywordCardKeyword(),
+            SwarmKeywords.Catch.GetModKeywordCardKeyword(),
+        ];
+
+    protected override HashSet<CardTag> CanonicalTags => [SwarmCardTagIds.Harpoon.GetModCardTag()];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{

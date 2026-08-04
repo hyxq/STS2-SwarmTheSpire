@@ -25,7 +25,7 @@
   "SWARM_THE_SPIRE_POWER_ELITE_POWER.title": "远洋",
   "SWARM_THE_SPIRE_POWER_BOSS_POWER.description": "你会获得稀有的渔获。",
   "SWARM_THE_SPIRE_POWER_BOSS_POWER.title": "深海",
-  "SWARM_THE_SPIRE_POWER_DUAL_HARPOON_EVIL_POWER.description": "将你每回合打出的第一张鱼叉牌的一张复制品加入你的手牌，使之获得[gold]消耗[/gold]和[gold]保留[/gold]。",
+  "SWARM_THE_SPIRE_POWER_DUAL_HARPOON_EVIL_POWER.description": "将你每回合打出的第一张鱼叉牌的一张复制品加入你的手牌，使之获得[gold]消耗[/gold]。",
   "SWARM_THE_SPIRE_POWER_DUAL_HARPOON_EVIL_POWER.title": "双持Evil",
   "SWARM_THE_SPIRE_POWER_QUEEN_POWER.description": "[gold]鱼叉[/gold]会在攻击后对所有敌人再攻击[blue]1[/blue]次。",
   "SWARM_THE_SPIRE_POWER_QUEEN_POWER.smartDescription": "[gold]鱼叉[/gold]会在攻击后对所有敌人再攻击[blue]{Amount}[/blue]次。",
@@ -68,5 +68,11 @@
   "SWARM_THE_SPIRE_POWER_ADVENT_INITIAL_TRACKING_POWER.smartDescription": "再打出[blue]{Amount}[/blue]张牌后，度过一次[gold]生日……[/gold]。",
   "SWARM_THE_SPIRE_POWER_ADVENT_INITIAL_TRACKING_POWER.title": "生日倒计时",
   "SWARM_THE_SPIRE_POWER_BIRTHDAY_DOT_EXHAUST_POWER.description": "在每回合开始时获得2层[gold]脆弱[/gold]、[gold]易伤[/gold]与[gold]虚弱[/gold]。",
-  "SWARM_THE_SPIRE_POWER_BIRTHDAY_DOT_EXHAUST_POWER.title": "我会永远记得今天......"
+  "SWARM_THE_SPIRE_POWER_BIRTHDAY_DOT_EXHAUST_POWER.title": "我会永远记得今天......",
+  "SWARM_THE_SPIRE_POWER_AUTO_SHIELD_POWER.description": "你的[gold]人工制品[/gold]具有[gold]缓冲[/gold]效果。",
+  "SWARM_THE_SPIRE_POWER_AUTO_SHIELD_POWER.smartDescription": "你的[gold]人工制品[/gold]具有[gold]缓冲[/gold]效果。",
+  "SWARM_THE_SPIRE_POWER_AUTO_SHIELD_POWER.title": "AutoShield v3.25",
+  "SWARM_THE_SPIRE_POWER_CYBERPUNK_HEART_POWER.description": "你的[gold]人工制品[/gold]具有[gold]再生[/gold]效果。",
+  "SWARM_THE_SPIRE_POWER_CYBERPUNK_HEART_POWER.smartDescription": "你的[gold]人工制品[/gold]具有[gold]再生[/gold]效果。",
+  "SWARM_THE_SPIRE_POWER_CYBERPUNK_HEART_POWER.title": "赛博之心"
 }

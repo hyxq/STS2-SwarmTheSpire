@@ -17,10 +17,11 @@ namespace SwarmTheSpire.Cards
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
             ArgumentNullException.ThrowIfNull(cardPlay.Target);
+            var hadMilesPower = cardPlay.Target.HasPower<MilesPower>();
             var val = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
-            if (cardPlay.Target.HasPower<MilesPower>())
+            if (hadMilesPower)
                 await CreatureCmd.GainBlock(Owner.Creature,
                     val.Results.SelectMany(static r => r).Sum(static r => r.TotalDamage + r.OverkillDamage),
                     ValueProp.Move, cardPlay);

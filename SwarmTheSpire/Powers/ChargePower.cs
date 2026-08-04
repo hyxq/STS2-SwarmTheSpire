@@ -33,7 +33,7 @@ public sealed class ChargePower : SwarmPowerTemplate
 		if (base.Owner != dealer)
 			return 0m;
 
-        if (cardSource is null || !cardSource.HasModCardTag(SwarmCardTagIds.Harpoon))
+        if (cardSource is null || !cardSource.HasModCardTag(SwarmCardTagIds.Harpoon.GetModCardTag()))
 			return 0m;
 		return base.Amount;
 	}
@@ -83,7 +83,7 @@ public sealed class ChargePower : SwarmPowerTemplate
         if (cardPlay.Card.Owner.Creature != Owner)
             return;
 
-        if (!cardPlay.Card.HasModCardTag(SwarmCardTagIds.Harpoon))
+        if (!cardPlay.Card.HasModCardTag(SwarmCardTagIds.Harpoon.GetModCardTag()))
             return;
 
         await PowerCmd.TickDownDuration(this);

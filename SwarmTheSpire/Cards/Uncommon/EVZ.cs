@@ -55,7 +55,7 @@ namespace SwarmTheSpire.Cards
                 {
                     var pool = Owner.Character.CardPool
                         .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
-                        .Where(static c => c.HasModCardTag(SwarmCardTagIds.Evz))
+                        .Where(static c => c.HasModCardTag(SwarmCardTagIds.Evz.GetModCardTag()))
                         .ToList();
 
                     var choices = CardFactory.GetDistinctForCombat(Owner, pool, choiceCount,

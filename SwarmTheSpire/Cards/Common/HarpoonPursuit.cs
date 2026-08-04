@@ -38,7 +38,7 @@ namespace SwarmTheSpire.Cards
             {
                 var val = CombatManager.Instance.History.CardPlaysStarted.LastOrDefault(e =>
                     e.CardPlay.Card.Owner == Owner && e.CardPlay.Card != this);
-                return val != null && val.CardPlay.Card.HasModCardTag(SwarmCardTagIds.Harpoon);
+                return val != null && val.CardPlay.Card.HasModCardTag(SwarmCardTagIds.Harpoon.GetModCardTag());
             }
         }
 

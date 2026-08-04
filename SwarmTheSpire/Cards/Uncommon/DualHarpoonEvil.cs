@@ -11,12 +11,11 @@ using SwarmTheSpire.Powers;
 namespace SwarmTheSpire.Cards
 {
     public sealed class DualHarpoonEvil()
-        : SwarmEvilPoolCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self, true)
+        : SwarmEvilPoolCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self, true)
     {
         public override IEnumerable<CardKeyword> CanonicalKeywords =>
         [
             SwarmKeywords.Harpoon.GetModKeywordCardKeyword(),
-            CardKeyword.Retain,
         ];
 
         protected override HashSet<CardTag> CanonicalTags => [SwarmCardTagIds.Evz.GetModCardTag()];
@@ -29,9 +28,6 @@ namespace SwarmTheSpire.Cards
             await PowerCmd.Apply<DualHarpoonEvilPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this);
         }
 
-        protected override void OnUpgrade()
-        {
-            EnergyCost.UpgradeBy(-1);
-        }
+            protected override void OnUpgrade() => AddKeyword(CardKeyword.Innate);
     }
 }
